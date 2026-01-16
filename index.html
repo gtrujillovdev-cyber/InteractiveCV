@@ -234,45 +234,73 @@
                         <div class="flex gap-1">
                              <div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
                              <div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+                             <div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
                         </div>
                     </div>
                     
-                    <div class="p-6 grid md:grid-cols-2 gap-8">
-                        <!-- Project 1 -->
-                        <div class="group">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">TFG: Finanzas Patrimoniales</h4>
-                                <span class="text-[10px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-1.5 py-0.5 border border-emerald-200 dark:border-emerald-800 rounded-sm">ACTIVE</span>
+                    <div class="p-6">
+                        <!-- Top Row: Existing Projects -->
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <!-- Project 1 -->
+                            <div class="group">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">TFG: Finanzas Patrimoniales</h4>
+                                    <span class="text-[10px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-1.5 py-0.5 border border-emerald-200 dark:border-emerald-800 rounded-sm">ACTIVE</span>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
+                                    Suite financiera personal con arquitectura Clean. Integra persistencia local segura y visualización de datos complejos en UI nativa.
+                                </p>
+                                <div class="mb-5 flex flex-wrap gap-1.5">
+                                    <span class="tech-badge">SwiftUI</span>
+                                    <span class="tech-badge">SwiftData</span>
+                                    <span class="tech-badge">Charts</span>
+                                </div>
+                                <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
+                                    <canvas id="chartProj1"></canvas>
+                                </div>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
-                                Suite financiera personal con arquitectura Clean. Integra persistencia local segura y visualización de datos complejos en UI nativa.
-                            </p>
-                            <div class="mb-5 flex flex-wrap gap-1.5">
-                                <span class="tech-badge">SwiftUI</span>
-                                <span class="tech-badge">SwiftData</span>
-                                <span class="tech-badge">Charts</span>
-                            </div>
-                            <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
-                                <canvas id="chartProj1"></canvas>
+
+                            <!-- Project 2 -->
+                            <div class="md:border-l md:border-slate-100 dark:md:border-slate-700 md:pl-8 group">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">BtcBriefing Agent</h4>
+                                    <a href="https://github.com/gtrujillovdev-cyber/DevOps/tree/main/BtcBriefing" target="_blank" class="text-[10px] font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b border-slate-300 dark:border-slate-600 hover:border-slate-900 dark:hover:border-white transition">SOURCE_CODE ↗</a>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
+                                    Agente autónomo de monitorización de mercados. Orquestación de APIs, análisis con LLMs y reportes automáticos SMTP.
+                                </p>
+                                <div class="mb-5 flex flex-wrap gap-1.5">
+                                    <span class="tech-badge">Python</span>
+                                    <span class="tech-badge">LLM_Integration</span>
+                                    <span class="tech-badge">Docker</span>
+                                </div>
+                                <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
+                                    <canvas id="chartProj2"></canvas>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Project 2 -->
-                        <div class="md:border-l md:border-slate-100 dark:md:border-slate-700 md:pl-8 group">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">BtcBriefing Agent</h4>
-                                <a href="https://github.com/gtrujillovdev-cyber/DevOps/tree/main/BtcBriefing" target="_blank" class="text-[10px] font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b border-slate-300 dark:border-slate-600 hover:border-slate-900 dark:hover:border-white transition">SOURCE_CODE ↗</a>
-                            </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
-                                Agente autónomo de monitorización de mercados. Orquestación de APIs, análisis con LLMs y reportes automáticos SMTP.
-                            </p>
-                            <div class="mb-5 flex flex-wrap gap-1.5">
-                                <span class="tech-badge">Python</span>
-                                <span class="tech-badge">LLM_Integration</span>
-                                <span class="tech-badge">Docker</span>
-                            </div>
-                            <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
-                                <canvas id="chartProj2"></canvas>
+                        <!-- Full Width Row: New DevOps Project -->
+                        <div class="border-t border-slate-100 dark:border-slate-700 pt-8 group">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">DevOps & Infrastructure Lab</h4>
+                                        <a href="https://github.com/gtrujillovdev-cyber/DevOps" target="_blank" class="text-[10px] font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b border-slate-300 dark:border-slate-600 hover:border-slate-900 dark:hover:border-white transition">SOURCE_CODE ↗</a>
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
+                                        Repositorio central de herramientas de automatización e infraestructura. Gestión de entornos Dockerizados, scripts de mantenimiento del sistema, pipelines de CI/CD y prácticas de seguridad operativa.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="tech-badge">Docker_Compose</span>
+                                        <span class="tech-badge">Bash_Scripting</span>
+                                        <span class="tech-badge">CI/CD</span>
+                                        <span class="tech-badge">Linux_Admin</span>
+                                    </div>
+                                </div>
+                                <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
+                                    <canvas id="chartProj3"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -550,6 +578,32 @@
             }
         });
         charts.push(c4);
+
+        // 5. PROJECT 3 CHART (NEW DEVOPS LAB)
+        const c5 = new Chart(document.getElementById('chartProj3'), {
+            type: 'bar',
+            data: {
+                labels: ['Auto', 'Infra', 'Sec', 'Monitor'],
+                datasets: [{
+                    label: 'Index',
+                    data: [90, 85, 80, 75],
+                    backgroundColor: '#475569',
+                    barPercentage: 0.5,
+                    borderRadius: 2
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    x: { display: false }, 
+                    y: { grid: { display: false } } 
+                },
+                plugins: { legend: { display: false }, tooltip: tooltipConfig }
+            }
+        });
+        charts.push(c5);
     </script>
 </body>
 </html>
