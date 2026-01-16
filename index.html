@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="light"> <!-- Default class, script will update this -->
+<html lang="es"> <!-- Removed 'light' class to prevent forcing light mode -->
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,17 @@
             darkMode: 'class', // Enables toggling via 'dark' class on HTML tag
         }
     </script>
+
+    <!-- CRITICAL: Theme Detection Script moved to HEAD to prevent flash -->
+    <script>
+        // Check system preference immediately
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Fonts -->
