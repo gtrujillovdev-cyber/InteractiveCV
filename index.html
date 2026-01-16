@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Trujillo Vallejo - Interactive CV Infographic</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- 
+        PALETTE SELECTION: "Electric Professional"
+        Primary: #4F46E5 (Indigo-600)
+        Secondary: #06B6D4 (Cyan-500)
+        Accent: #F59E0B (Amber-500)
+        Background: #F3F4F6 (Gray-100)
+        
+        CONFIRMATION:
+        - NO SVG used.
+        - NO Mermaid JS used.
+        - All diagrams implemented with HTML/CSS or Canvas.
+        - Plan:
+            1. Hero Section: Personal Brand & Hook.
+            2. Profile Summary: Textual Context.
+            3. Skills Data: Radar Chart & Stack Distribution.
+            4. Experience: HTML/CSS Vertical Timeline.
+            5. Projects: Detailed Cards with Metric Visualizations.
+            6. Education & Languages: Compact visuals.
+    -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+        }
+        
+        /* Chart Container Styling Rules */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width constraint */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height constraint */
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Timeline Styling */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #E5E7EB;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4F46E5; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4338ca; 
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- HERO SECTION -->
+    <header class="bg-gradient-to-r from-indigo-900 to-indigo-700 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3 mb-6 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight">Gabriel Trujillo Vallejo</h1>
+                    <h2 class="text-2xl text-cyan-400 font-semibold mb-4">Desarrollador iOS & Software Junior</h2>
+                    <p class="text-indigo-100 text-lg leading-relaxed max-w-2xl">
+                        Estudiante de DAM especializado en <strong>Desarrollo Nativo (SwiftUI/UIKit)</strong>. 
+                        Fusionando el mundo móvil con una sólida arquitectura Backend y Cloud (GCP/AWS). 
+                        Disciplina militar aplicada al código.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <span class="bg-indigo-800 bg-opacity-50 px-3 py-1 rounded border border-indigo-500 text-sm">📍 Sevilla, España</span>
+                        <span class="bg-indigo-800 bg-opacity-50 px-3 py-1 rounded border border-indigo-500 text-sm">📱 +34 661 666 806</span>
+                        <span class="bg-indigo-800 bg-opacity-50 px-3 py-1 rounded border border-indigo-500 text-sm">✉️ gtrujillov.dev@gmail.com</span>
+                    </div>
+                </div>
+                <!-- Interactive Goal Visual -->
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-6 border border-white border-opacity-20 shadow-xl text-center">
+                        <span class="text-5xl mb-2 block">🎯</span>
+                        <h3 class="text-xl font-bold text-white">Objetivo Profesional</h3>
+                        <p class="text-sm text-indigo-100 mt-2">Aplicar madurez y análisis en prácticas de desarrollo móvil y arquitectura cloud.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT GRID -->
+    <main class="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-12 gap-8">
+
+        <!-- INTRO & NARRATIVE -->
+        <div class="md:col-span-12 mb-4">
+            <div class="bg-white rounded-lg shadow-md p-8 border-l-4 border-amber-500">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">La Propuesta de Valor</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    En un mercado saturado de perfiles junior, mi perfil destaca por la <strong>convergencia de competencias</strong>. No solo desarrollo interfaces fluidas en iOS; entiendo la infraestructura que las sostiene. Mi transición desde una carrera militar y de gestión garantiza soft skills difíciles de enseñar: <strong>disciplina férrea, liderazgo y resolución de problemas bajo presión extrema</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- SECTION: SKILLS ANALYSIS -->
+        <div class="md:col-span-12 lg:col-span-6">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                <h3 class="text-xl font-bold text-gray-800 mb-2 border-b pb-2">Competencias Técnicas (Radar)</h3>
+                <p class="text-sm text-gray-500 mb-6">Visualización del equilibrio entre desarrollo móvil, backend y operaciones.</p>
+                
+                <div class="chart-container">
+                    <canvas id="skillsRadarChart"></canvas>
+                </div>
+                
+                <div class="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                    <strong>Insight:</strong> Aunque el foco principal es <strong>iOS (Swift/SwiftUI)</strong>, la base en Python y Cloud permite diseñar apps escalables desde el primer día.
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-12 lg:col-span-6">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                <h3 class="text-xl font-bold text-gray-800 mb-2 border-b pb-2">Distribución del Stack Tecnológico</h3>
+                <p class="text-sm text-gray-500 mb-6">Composición porcentual estimada del conocimiento aplicado.</p>
+                
+                <div class="chart-container">
+                    <canvas id="techStackDoughnut"></canvas>
+                </div>
+
+                <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+                    <div class="p-2 bg-indigo-50 rounded">
+                        <div class="text-indigo-600 font-bold">iOS Native</div>
+                        <div class="text-xs text-gray-500">Core Focus</div>
+                    </div>
+                    <div class="p-2 bg-cyan-50 rounded">
+                        <div class="text-cyan-600 font-bold">Backend</div>
+                        <div class="text-xs text-gray-500">Python/Java</div>
+                    </div>
+                    <div class="p-2 bg-amber-50 rounded">
+                        <div class="text-amber-600 font-bold">Cloud/Ops</div>
+                        <div class="text-xs text-gray-500">GCP/Docker</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: EXPERIENCE TIMELINE -->
+        <div class="md:col-span-12 my-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">Trayectoria Profesional y Formativa</h3>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="hidden md:block timeline-line bg-gray-200"></div>
+
+                <!-- Item 1: DAM Student -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-8 timeline-item">
+                    <div class="order-1 md:w-5/12 text-center md:text-right px-4">
+                        <h4 class="text-lg font-bold text-indigo-600">Téc. Sup. Desarrollo Apps Multiplataforma</h4>
+                        <p class="text-gray-600">CESUR, Sevilla</p>
+                        <p class="text-sm text-gray-500 mt-1">Formación técnica intensiva y especialización autodidacta.</p>
+                    </div>
+                    <div class="order-1 my-4 md:my-0 flex items-center justify-center bg-indigo-600 text-white w-10 h-10 rounded-full shadow-lg border-4 border-white z-10 font-bold">
+                        24
+                    </div>
+                    <div class="order-1 md:w-5/12 px-4 bg-indigo-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-600 w-full md:w-auto">
+                        <span class="font-bold text-gray-700">Actualidad</span>
+                        <p class="text-sm text-gray-600">Foco en Clean Architecture y patrones de diseño móvil.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Military Service -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-8 timeline-item">
+                    <div class="order-1 md:w-5/12 px-4 bg-white p-4 rounded-lg shadow-sm border-r-4 border-cyan-500 text-right md:text-left w-full md:w-auto">
+                        <span class="font-bold text-gray-700">2020 - 2025</span>
+                        <p class="text-sm text-gray-600">Responsabilidad sobre material sensible y sistemas de telecomunicaciones.</p>
+                    </div>
+                    <div class="order-1 my-4 md:my-0 flex items-center justify-center bg-cyan-500 text-white w-10 h-10 rounded-full shadow-lg border-4 border-white z-10 font-bold">
+                        20
+                    </div>
+                    <div class="order-1 md:w-5/12 text-center md:text-left px-4">
+                        <h4 class="text-lg font-bold text-gray-800">Soldado Especialista (Óptica/Transmisiones)</h4>
+                        <p class="text-gray-600">Ministerio de Defensa (Legión)</p>
+                        <p class="text-sm text-gray-500 mt-1">Desarrollo de disciplina, logística y trabajo bajo presión.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Manager -->
+                <div class="flex flex-col md:flex-row items-center justify-between timeline-item">
+                    <div class="order-1 md:w-5/12 text-center md:text-right px-4">
+                        <h4 class="text-lg font-bold text-gray-800">Gerente de Tienda</h4>
+                        <p class="text-gray-600">MERCAVAT 2014 SL</p>
+                        <p class="text-sm text-gray-500 mt-1">Gestión de equipos (3-5 personas) y operaciones comerciales.</p>
+                    </div>
+                    <div class="order-1 my-4 md:my-0 flex items-center justify-center bg-gray-400 text-white w-10 h-10 rounded-full shadow-lg border-4 border-white z-10 font-bold">
+                        14
+                    </div>
+                    <div class="order-1 md:w-5/12 px-4 bg-white p-4 rounded-lg shadow-sm border-l-4 border-gray-400 w-full md:w-auto">
+                        <span class="font-bold text-gray-700">2014 - 2019</span>
+                        <p class="text-sm text-gray-600">Resolución de conflictos y atención al cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: PROJECTS -->
+        <div class="md:col-span-12 mt-4">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-indigo-600 pl-4">Proyectos Destacados</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1: TFG Finance -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="bg-indigo-600 p-4 text-white">
+                        <h4 class="text-xl font-bold">App Finanzas & Inversiones (TFG)</h4>
+                        <span class="text-xs bg-indigo-800 px-2 py-1 rounded text-indigo-200">En Desarrollo</span>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Aplicación nativa iOS para control integral de finanzas y carteras. Prioriza la <strong>Persistencia Local (SwiftData)</strong> y una UI moderna.
+                        </p>
+                        <div class="mb-4">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase mb-2">Tecnologías Clave</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">SwiftUI</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">SwiftData</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">Charts</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">MVVM</span>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="height: 200px;">
+                            <canvas id="project1Chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: QuantFlow -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="bg-gray-800 p-4 text-white">
+                        <h4 class="text-xl font-bold">QuantFlow (Trading Bot)</h4>
+                        <span class="text-xs bg-gray-600 px-2 py-1 rounded text-gray-300">Proyecto Personal</span>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Sistema autónomo de trading cripto. Maneja lógica compleja de backend, consumo de <strong>REST APIs</strong> en tiempo real y análisis técnico.
+                        </p>
+                        <div class="mb-4">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase mb-2">Tecnologías Clave</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">Python</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">Docker</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">APIs</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">RSI/MACD</span>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="height: 200px;">
+                            <canvas id="project2Chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: EDUCATION & LANGS -->
+        <div class="md:col-span-12 lg:col-span-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Certificaciones & Futuro</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="border border-l-4 border-l-amber-500 border-gray-100 p-4 rounded bg-gray-50">
+                        <h4 class="font-bold text-gray-800">Linux Essentials (LPI)</h4>
+                        <p class="text-sm text-gray-500">En curso. Administración de sistemas y scripting.</p>
+                    </div>
+                    <div class="border border-l-4 border-l-gray-400 border-gray-100 p-4 rounded bg-gray-50">
+                        <h4 class="font-bold text-gray-800">AWS Cloud Practitioner</h4>
+                        <p class="text-sm text-gray-500">Objetivo futuro. Infraestructura en la nube.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-12 lg:col-span-4">
+            <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Idiomas</h3>
+                <div class="chart-container" style="height: 200px;">
+                    <canvas id="languagesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2"><strong>Gabriel Trujillo Vallejo</strong> &copy; 2026</p>
+            <p class="text-sm text-gray-500">Desarrollador iOS | Cloud | DevOps</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank" class="text-indigo-400 hover:text-white">LinkedIn</a>
+                <span class="text-gray-600">|</span>
+                <a href="https://github.com/gtrujillovdev-cyber" target="_blank" class="text-indigo-400 hover:text-white">GitHub</a>
+                <span class="text-gray-600">|</span>
+                <a href="mailto:gtrujillov.dev@gmail.com" class="text-indigo-400 hover:text-white">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- HELPER FUNCTION: LABEL WRAPPING ---
+        function wrapLabel(label) {
+            const maxLen = 16;
+            if (label.length <= maxLen) return label;
+            
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length < maxLen) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- GLOBAL CHART DEFAULTS ---
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#4B5563';
+        Chart.defaults.scale.grid.color = '#E5E7EB';
+        
+        // --- TOOLTIP CONFIGURATION GENERATOR ---
+        function getTooltipConfig() {
+            return {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            };
+        }
+
+        // 1. RADAR CHART: Skills Analysis
+        const ctxRadar = document.getElementById('skillsRadarChart').getContext('2d');
+        const radarData = {
+            labels: ['Swift / iOS', 'SwiftUI', 'Python / Backend', 'GCP / Cloud', 'Docker / DevOps', 'SQL / Datos', 'Soft Skills'],
+            datasets: [{
+                label: 'Nivel de Competencia',
+                data: [90, 85, 80, 60, 65, 75, 95], // Subjective scoring based on CV emphasis
+                fill: true,
+                backgroundColor: 'rgba(79, 70, 229, 0.2)', // Indigo-600 low opacity
+                borderColor: 'rgb(79, 70, 229)',
+                pointBackgroundColor: 'rgb(6, 182, 212)', // Cyan-500
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(79, 70, 229)'
+            }]
+        };
+
+        // Wrap labels for Radar
+        radarData.labels = radarData.labels.map(wrapLabel);
+
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: radarData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: {
+                    line: { borderWidth: 3 }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#E5E7EB' },
+                        grid: { color: '#E5E7EB' },
+                        pointLabels: {
+                            font: { size: 11, weight: '600' }
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false } // Hide numbers to make it cleaner
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: getTooltipConfig()
+                }
+            }
+        });
+
+        // 2. DOUGHNUT CHART: Tech Stack Distribution
+        const ctxDoughnut = document.getElementById('techStackDoughnut').getContext('2d');
+        const doughnutLabels = ['Desarrollo Móvil (iOS)', 'Backend & Data', 'Infraestructura & DevOps', 'Gestión & Soft Skills'];
+        const doughnutData = {
+            labels: doughnutLabels.map(wrapLabel),
+            datasets: [{
+                data: [45, 25, 15, 15], // Estimated breakdown
+                backgroundColor: [
+                    '#4F46E5', // Indigo (Mobile)
+                    '#06B6D4', // Cyan (Backend)
+                    '#F59E0B', // Amber (Ops)
+                    '#9CA3AF'  // Gray (Soft Skills)
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: doughnutData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12 } },
+                    tooltip: getTooltipConfig()
+                }
+            }
+        });
+
+        // 3. BAR CHART: Project 1 (App Finanzas) - Features/Components
+        const ctxProj1 = document.getElementById('project1Chart').getContext('2d');
+        new Chart(ctxProj1, {
+            type: 'bar',
+            data: {
+                labels: ['UI/UX (SwiftUI)', 'Lógica Negocio', 'Persistencia (Data)', 'Gráficos'],
+                datasets: [{
+                    label: 'Complejidad Relativa',
+                    data: [85, 70, 80, 60],
+                    backgroundColor: '#4F46E5',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Horizontal Bar
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { display: false, max: 100 },
+                    y: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: getTooltipConfig()
+                }
+            }
+        });
+
+        // 4. BAR CHART: Project 2 (QuantFlow) - Features/Components
+        const ctxProj2 = document.getElementById('project2Chart').getContext('2d');
+        new Chart(ctxProj2, {
+            type: 'bar',
+            data: {
+                labels: ['Conexión APIs', 'Algoritmos (Python)', 'Dockerización', 'Gestión Errores'],
+                datasets: [{
+                    label: 'Complejidad Relativa',
+                    data: [90, 85, 75, 70],
+                    backgroundColor: '#1F2937', // Dark gray
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { display: false, max: 100 },
+                    y: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: getTooltipConfig()
+                }
+            }
+        });
+
+        // 5. PIE CHART: Languages
+        const ctxLang = document.getElementById('languagesChart').getContext('2d');
+        new Chart(ctxLang, {
+            type: 'pie',
+            data: {
+                labels: ['Español (Nativo)', 'Inglés (B2/Técnico)'],
+                datasets: [{
+                    data: [100, 75],
+                    backgroundColor: ['#F59E0B', '#3B82F6'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    tooltip: getTooltipConfig()
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
