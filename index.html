@@ -1,264 +1,425 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="light"> <!-- Added class for Tailwind Dark Mode handling -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Trujillo Vallejo - Fintech iOS & Cloud Developer</title>
+    <title>Gabriel Trujillo Vallejo | Fintech Engineering Profile</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enables toggling via 'dark' class on HTML tag
+        }
+    </script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- 
-        THEME: "Electric Fintech"
-        Primary: #4F46E5 (Indigo-600) - Tech/Deep
-        Secondary: #06B6D4 (Cyan-500) - Cloud/Clean
-        Accent: #F59E0B (Amber-500) - Energy/Attention
-        Background: #F3F4F6 (Gray-100)
-    -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; }
+        /* --- OBSIDIAN THEME SETTINGS --- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
         
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* CHART CONTAINER */
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            height: 300px;
-            max-height: 400px;
+            height: 220px;
         }
-        
-        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        @media (min-width: 768px) { .chart-container { height: 260px; } }
 
-        /* Timeline Line */
+        /* TIMELINE */
         .timeline-line {
-            position: absolute; left: 50%; transform: translateX(-50%);
-            width: 4px; height: 100%; background-color: #E5E7EB; z-index: 0;
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 1px; margin-left: 7px;
+            transition: background-color 0.3s;
         }
+        /* Light Mode Timeline */
+        html:not(.dark) .timeline-line { background-color: #CBD5E1; }
+        /* Dark Mode Timeline */
+        html.dark .timeline-line { background-color: #475569; }
         
-        /* Interactive Hover Effects */
-        .hover-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .timeline-dot {
+            width: 9px; height: 9px;
+            border-width: 2px; border-style: solid;
+            position: absolute; left: 3px; top: 8px;
+            z-index: 10;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        /* Light Mode Dot */
+        html:not(.dark) .timeline-dot { background-color: #334155; border-color: #F8FAFC; }
+        /* Dark Mode Dot */
+        html.dark .timeline-dot { background-color: #94A3B8; border-color: #1E293B; }
+
+        /* CARDS */
+        .tech-card {
+            border-width: 1px; border-style: solid;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        /* Light Mode Card */
+        html:not(.dark) .tech-card { background: #FFFFFF; border-color: #E2E8F0; }
+        /* Dark Mode Card */
+        html.dark .tech-card { background: #1E293B; border-color: #334155; }
         
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #4F46E5; border-radius: 4px; }
+        /* BADGES */
+        .tech-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border-width: 1px; border-style: solid;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        /* Light Mode Badge */
+        html:not(.dark) .tech-badge { background-color: #F1F5F9; border-color: #CBD5E1; color: #475569; }
+        /* Dark Mode Badge */
+        html.dark .tech-badge { background-color: #0F172A; border-color: #334155; color: #94A3B8; }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { border-radius: 3px; }
+        
+        html:not(.dark) ::-webkit-scrollbar-thumb { background: #94A3B8; }
+        html.dark ::-webkit-scrollbar-thumb { background: #475569; }
+        
+        /* TOGGLE BUTTON ANIMATION */
+        .toggle-icon { transition: transform 0.5s ease; }
+        .rotate-icon { transform: rotate(180deg); }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="antialiased selection:bg-slate-300 selection:text-slate-900 dark:selection:bg-slate-700 dark:selection:text-slate-100 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
-    <!-- HERO SECTION -->
-    <header class="bg-gradient-to-r from-indigo-900 to-indigo-700 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-12">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-3/4 mb-6 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight">Gabriel Trujillo Vallejo</h1>
-                    <h2 class="text-2xl text-cyan-400 font-semibold mb-4">Desarrollador iOS & Software Junior | Enfoque Fintech & Cloud</h2>
-                    <p class="text-indigo-100 text-lg leading-relaxed max-w-3xl">
-                        Perfil híbrido que combina el <strong>desarrollo nativo (SwiftUI)</strong> con arquitectura <strong>Cloud/DevOps</strong> y visión de negocio. 
-                        Integro <strong>IA y automatización</strong> para crear soluciones eficientes. 
-                        Disciplina operativa forjada en 10 años de experiencia profesional (Legión & Gestión).
-                    </p>
-                    <div class="mt-6 flex flex-wrap gap-3">
-                        <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank" class="bg-indigo-800 hover:bg-indigo-600 transition px-4 py-2 rounded border border-indigo-500 text-sm font-medium flex items-center gap-2">
-                            🔗 LinkedIn
-                        </a>
-                        <a href="https://github.com/gtrujillovdev-cyber" target="_blank" class="bg-indigo-800 hover:bg-indigo-600 transition px-4 py-2 rounded border border-indigo-500 text-sm font-medium flex items-center gap-2">
-                            💻 GitHub
-                        </a>
-                        <a href="mailto:gtrujillov.dev@gmail.com" class="bg-indigo-800 hover:bg-indigo-600 transition px-4 py-2 rounded border border-indigo-500 text-sm font-medium flex items-center gap-2">
-                            ✉️ Contacto
-                        </a>
-                    </div>
+    <!-- TOP BAR: SYSTEM STATUS + THEME TOGGLE -->
+    <div class="bg-slate-900 text-slate-400 text-[10px] md:text-xs font-mono py-1.5 border-b border-slate-800 dark:bg-black dark:border-slate-900">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <span>SYS_STATUS: ONLINE</span>
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
                 </div>
-                <!-- Badge -->
-                <div class="md:w-1/4 flex justify-center">
-                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-6 border border-white border-opacity-20 shadow-xl text-center">
-                        <span class="text-4xl mb-2 block">🛡️</span>
-                        <h3 class="text-lg font-bold text-white">Mindset</h3>
-                        <p class="text-xs text-indigo-100 mt-1 uppercase tracking-wide">Disciplina • Análisis • Ejecución</p>
-                    </div>
+                <!-- THEME TOGGLE BUTTON -->
+                <button id="themeToggle" class="flex items-center gap-1 hover:text-white transition focus:outline-none">
+                    <span class="hidden sm:inline">THEME:</span>
+                    <span id="themeLabel" class="text-slate-200 font-bold">LIGHT</span>
+                    <!-- Icon placeholder, will be SVGs -->
+                    <span id="themeIcon" class="toggle-icon">☀️</span>
+                </button>
+            </div>
+            <div class="hidden md:block tracking-wider">LOC: SEVILLA, ES | ID: GABRIEL-TRUJILLO-VALLEJO</div>
+            <div>LAST_UPDATE: 2026-01-16</div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-6 py-10 md:py-14">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
+                        GABRIEL TRUJILLO VALLEJO
+                    </h1>
+                    <h2 class="text-sm md:text-base text-slate-500 dark:text-slate-400 font-light flex flex-wrap items-center gap-3">
+                        <span class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 tracking-tight">iOS / FINTECH / CLOUD</span>
+                        <span class="hidden md:inline text-slate-300 dark:text-slate-700">|</span>
+                        <span>Ingeniería de Software & Arquitectura</span>
+                    </h2>
                 </div>
+                
+                <!-- Actions -->
+                <div class="flex gap-3 w-full md:w-auto mt-2 md:mt-0">
+                    <a href="https://github.com/gtrujillovdev-cyber" target="_blank" class="px-5 py-2.5 bg-slate-900 dark:bg-slate-800 text-white text-xs font-mono hover:bg-slate-800 dark:hover:bg-slate-700 transition border border-slate-900 dark:border-slate-700 flex items-center gap-2 rounded-sm shadow-sm">
+                        GITHUB_REPO ↗
+                    </a>
+                    <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank" class="px-5 py-2.5 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 text-xs font-mono hover:bg-slate-50 dark:hover:bg-slate-900 transition border border-slate-300 dark:border-slate-700 flex items-center gap-2 rounded-sm">
+                        LINKEDIN ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- NARRATIVE BLOCK -->
+            <div class="mt-8 max-w-4xl">
+                <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed border-l-2 border-slate-900 dark:border-slate-500 pl-5 py-1">
+                    Desarrollador con perfil híbrido orientado a resultados. Combino el desarrollo nativo <strong>(iOS/SwiftUI)</strong> con arquitectura <strong>Cloud & DevOps</strong>. Aplico metodología militar (disciplina operativa) y visión económica a la ingeniería de software. Enfocado en soluciones Fintech, automatización con IA y sistemas resilientes.
+                </p>
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-12 gap-8">
+    <!-- MAIN DASHBOARD -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <!-- SKILLS & STACK -->
-        <div class="md:col-span-12 lg:col-span-6">
-            <div class="bg-white rounded-lg shadow-md p-6 h-full hover-card border-t-4 border-indigo-500">
-                <h3 class="text-xl font-bold text-gray-800 mb-2 border-b pb-2">Competencias Técnicas</h3>
-                <p class="text-sm text-gray-500 mb-6">Equilibrio entre movilidad, backend y operaciones.</p>
-                <div class="chart-container">
-                    <canvas id="skillsRadarChart"></canvas>
+            <!-- LEFT COLUMN -->
+            <div class="lg:col-span-4 space-y-6">
+                
+                <!-- Skill Radar -->
+                <div class="tech-card p-5">
+                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 dark:border-slate-700 pb-2">
+                        <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono">Competence_Matrix_v2.5</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="skillsRadar"></canvas>
+                    </div>
+                    <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded text-xs text-slate-500 dark:text-slate-400 font-mono leading-relaxed">
+                        > PROFILE: T-Shaped<br>
+                        > CORE: iOS Development (Swift)<br>
+                        > SUPPORT: Python / Cloud Ops
+                    </div>
                 </div>
+
+                <!-- Tech Stack Distribution -->
+                <div class="tech-card p-5">
+                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 dark:border-slate-700 pb-2">
+                        <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono">Stack_Allocation</h3>
+                    </div>
+                    <div class="chart-container" style="height: 180px;">
+                        <canvas id="stackDoughnut"></canvas>
+                    </div>
+                    <div class="mt-5 flex flex-wrap gap-2 justify-center">
+                        <span class="tech-badge">iOS_Native</span>
+                        <span class="tech-badge">Python_Backend</span>
+                        <span class="tech-badge">Cloud_Infra</span>
+                    </div>
+                </div>
+
+                <!-- DNA / Interests -->
+                <div class="tech-card p-5 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+                    <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-5">Core_Drivers_&_DNA</h3>
+                    <ul class="space-y-5">
+                        <li class="flex items-start gap-3 group">
+                            <span class="font-mono text-xs text-slate-300 dark:text-slate-600 mt-1 group-hover:text-slate-500 dark:group-hover:text-slate-400 transition">01</span>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-800 dark:text-slate-200 block">Fintech & Mercados</span>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">Trading algorítmico, Bitcoin y eficiencia de capital aplicada al código.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <span class="font-mono text-xs text-slate-300 dark:text-slate-600 mt-1 group-hover:text-slate-500 dark:group-hover:text-slate-400 transition">02</span>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-800 dark:text-slate-200 block">Contexto Histórico</span>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">Análisis de sistemas complejos, evolución y causalidad.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <span class="font-mono text-xs text-slate-300 dark:text-slate-600 mt-1 group-hover:text-slate-500 dark:group-hover:text-slate-400 transition">03</span>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-800 dark:text-slate-200 block">Disciplina (Ironman 70.3)</span>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">Resistencia mental y constancia trasladada a la calidad del software.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-        </div>
 
-        <div class="md:col-span-12 lg:col-span-6">
-            <div class="bg-white rounded-lg shadow-md p-6 h-full hover-card border-t-4 border-cyan-500">
-                <h3 class="text-xl font-bold text-gray-800 mb-2 border-b pb-2">Distribución del Stack</h3>
-                <p class="text-sm text-gray-500 mb-6">Enfoque porcentual de conocimientos aplicados.</p>
-                <div class="chart-container">
-                    <canvas id="techStackDoughnut"></canvas>
-                </div>
-            </div>
-        </div>
+            <!-- RIGHT COLUMN -->
+            <div class="lg:col-span-8 space-y-6">
 
-        <!-- EXPERIENCE TIMELINE (RENAMED) -->
-        <div class="md:col-span-12 my-8">
-            <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center uppercase tracking-widest">Trayectoria Profesional</h3>
-            
-            <div class="relative max-w-4xl mx-auto">
-                <div class="hidden md:block timeline-line"></div>
-
-                <!-- 2024-Present -->
-                <div class="flex flex-col md:flex-row items-center justify-between mb-10 timeline-item">
-                    <div class="order-1 md:w-5/12 text-center md:text-right px-4">
-                        <h4 class="text-lg font-bold text-indigo-700">Téc. Sup. Desarrollo Apps Multiplataforma</h4>
-                        <p class="text-gray-600 font-semibold">CESUR, Sevilla</p>
-                        <p class="text-sm text-gray-500 mt-1">Especialización en Clean Architecture y Patrones de Diseño.</p>
+                <!-- Featured Projects -->
+                <div class="tech-card overflow-hidden">
+                    <div class="bg-slate-50 dark:bg-slate-900 px-6 py-3 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                        <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono">Engineering_Projects</h3>
+                        <div class="flex gap-1">
+                             <div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+                             <div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+                        </div>
                     </div>
-                    <div class="order-1 my-4 md:my-0 flex items-center justify-center bg-indigo-600 text-white w-10 h-10 rounded-full shadow-lg border-4 border-white z-10 font-bold">24</div>
-                    <div class="order-1 md:w-5/12 px-4 bg-indigo-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-600 w-full md:w-auto">
-                        <span class="font-bold text-gray-800 text-xs uppercase bg-indigo-200 px-2 py-1 rounded">Actualidad</span>
-                        <p class="text-sm text-gray-700 mt-2">Formación técnica intensiva combinada con proyectos autodidactas en iOS y Cloud.</p>
-                    </div>
-                </div>
-
-                <!-- 2020-2025 Military -->
-                <div class="flex flex-col md:flex-row items-center justify-between mb-10 timeline-item">
-                    <div class="order-1 md:w-5/12 px-4 bg-white p-4 rounded-lg shadow-sm border-r-4 border-cyan-500 text-right md:text-left w-full md:w-auto">
-                        <span class="font-bold text-gray-800 text-xs uppercase bg-cyan-100 px-2 py-1 rounded">2020 - 2025</span>
-                        <p class="text-sm text-gray-700 mt-2"><strong>Gestión de Activos Críticos:</strong> Administración de inventario tecnológico y trazabilidad.</p>
-                        <p class="text-sm text-gray-700"><strong>Incidencias:</strong> Resolución de problemas técnicos bajo presión operativa.</p>
-                    </div>
-                    <div class="order-1 my-4 md:my-0 flex items-center justify-center bg-cyan-500 text-white w-10 h-10 rounded-full shadow-lg border-4 border-white z-10 font-bold">20</div>
-                    <div class="order-1 md:w-5/12 text-center md:text-left px-4">
-                        <h4 class="text-lg font-bold text-gray-800">Responsable de Material Técnico y Operaciones</h4>
-                        <p class="text-gray-600 font-semibold">Ministerio de Defensa (Legión)</p>
-                        <p class="text-sm text-gray-500 mt-1">Disciplina férrea, logística y mantenimiento de sistemas.</p>
-                    </div>
-                </div>
-
-                <!-- 2014-2019 Manager -->
-                <div class="flex flex-col md:flex-row items-center justify-between timeline-item">
-                    <div class="order-1 md:w-5/12 text-center md:text-right px-4">
-                        <h4 class="text-lg font-bold text-gray-800">Gerente de Unidad de Negocio</h4>
-                        <p class="text-gray-600 font-semibold">MERCAVAT 2014 SL</p>
-                        <p class="text-sm text-gray-500 mt-1">Liderazgo de equipos y cumplimiento de KPIs.</p>
-                    </div>
-                    <div class="order-1 my-4 md:my-0 flex items-center justify-center bg-gray-400 text-white w-10 h-10 rounded-full shadow-lg border-4 border-white z-10 font-bold">14</div>
-                    <div class="order-1 md:w-5/12 px-4 bg-white p-4 rounded-lg shadow-sm border-l-4 border-gray-400 w-full md:w-auto">
-                        <span class="font-bold text-gray-800 text-xs uppercase bg-gray-200 px-2 py-1 rounded">2014 - 2019</span>
-                        <p class="text-sm text-gray-700 mt-2">Gestión integral de operaciones, stock y resolución de conflictos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECTS SECTION -->
-        <div class="md:col-span-12 mt-4">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-indigo-600 pl-4">Proyectos & Arquitectura</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1: TFG -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-card">
-                    <div class="bg-indigo-600 p-4 text-white flex justify-between items-center">
-                        <h4 class="text-lg font-bold">App Gestión Patrimonial (TFG)</h4>
-                        <span class="text-xs bg-indigo-800 px-2 py-1 rounded">iOS Nativo</span>
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between">
-                        <div>
-                            <p class="text-gray-600 mb-4 text-sm">
-                                Suite financiera personal centrada en privacidad y UX. Persistencia local robusta y visualización de datos financieros complejos.
+                    
+                    <div class="p-6 grid md:grid-cols-2 gap-8">
+                        <!-- Project 1 -->
+                        <div class="group">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">TFG: Finanzas Patrimoniales</h4>
+                                <span class="text-[10px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-1.5 py-0.5 border border-emerald-200 dark:border-emerald-800 rounded-sm">ACTIVE</span>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
+                                Suite financiera personal con arquitectura Clean. Integra persistencia local segura y visualización de datos complejos en UI nativa.
                             </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="badge px-2 py-1 bg-gray-100 text-xs font-bold rounded">SwiftUI</span>
-                                <span class="badge px-2 py-1 bg-gray-100 text-xs font-bold rounded">SwiftData</span>
-                                <span class="badge px-2 py-1 bg-gray-100 text-xs font-bold rounded">Charts</span>
+                            <div class="mb-5 flex flex-wrap gap-1.5">
+                                <span class="tech-badge">SwiftUI</span>
+                                <span class="tech-badge">SwiftData</span>
+                                <span class="tech-badge">Charts</span>
+                            </div>
+                            <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
+                                <canvas id="chartProj1"></canvas>
                             </div>
                         </div>
-                        <div class="chart-container" style="height: 180px;">
-                            <canvas id="project1Chart"></canvas>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Project 2: BtcBriefing -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-card">
-                    <div class="bg-gray-800 p-4 text-white flex justify-between items-center">
-                        <h4 class="text-lg font-bold">BtcBriefing Agent (IA)</h4>
-                        <a href="https://github.com/gtrujillovdev-cyber/DevOps/tree/main/BtcBriefing" target="_blank" class="text-xs bg-gray-600 hover:bg-gray-500 px-2 py-1 rounded transition cursor-pointer flex items-center gap-1">
-                            GitHub ↗
-                        </a>
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between">
-                        <div>
-                            <p class="text-gray-600 mb-4 text-sm">
-                                Agente autónomo que monitorea mercados cripto y genera informes ejecutivos mediante <strong>LLMs</strong>. Orquestación automática y alertas SMTP.
+                        <!-- Project 2 -->
+                        <div class="md:border-l md:border-slate-100 dark:md:border-slate-700 md:pl-8 group">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">BtcBriefing Agent</h4>
+                                <a href="https://github.com/gtrujillovdev-cyber/DevOps/tree/main/BtcBriefing" target="_blank" class="text-[10px] font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b border-slate-300 dark:border-slate-600 hover:border-slate-900 dark:hover:border-white transition">SOURCE_CODE ↗</a>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 text-justify leading-relaxed">
+                                Agente autónomo de monitorización de mercados. Orquestación de APIs, análisis con LLMs y reportes automáticos SMTP.
                             </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="badge px-2 py-1 bg-gray-100 text-xs font-bold rounded">Python</span>
-                                <span class="badge px-2 py-1 bg-gray-100 text-xs font-bold rounded">LLM Integration</span>
-                                <span class="badge px-2 py-1 bg-gray-100 text-xs font-bold rounded">APIs REST</span>
+                            <div class="mb-5 flex flex-wrap gap-1.5">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">LLM_Integration</span>
+                                <span class="tech-badge">Docker</span>
+                            </div>
+                            <div class="h-28 w-full opacity-90 group-hover:opacity-100 transition">
+                                <canvas id="chartProj2"></canvas>
                             </div>
                         </div>
-                        <div class="chart-container" style="height: 180px;">
-                            <canvas id="project2Chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Professional Timeline -->
+                <div class="tech-card p-6">
+                    <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-8">Career_Timeline_&_Ops</h3>
+                    
+                    <div class="relative space-y-10 pl-2">
+                        <!-- Item 1 -->
+                        <div class="relative pl-8">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Téc. Sup. Desarrollo Multiplataforma</h4>
+                                <span class="font-mono text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-700">2024 - NOW</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-2 font-mono uppercase tracking-wide">CESUR, Sevilla</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Especialización técnica en patrones de diseño móvil (MVVM), Clean Architecture y metodologías ágiles.</p>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative pl-8">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Responsable Material Técnico (Legión)</h4>
+                                <span class="font-mono text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-700">2020 - 2025</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-2 font-mono uppercase tracking-wide">Ministerio de Defensa</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Gestión de activos críticos (Óptica/Transmisiones). Documentación técnica, trazabilidad de inventario y mantenimiento bajo estándares militares.</p>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative pl-8">
+                            <div class="timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Gerencia & Operaciones</h4>
+                                <span class="font-mono text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-700">2014 - 2019</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mb-2 font-mono uppercase tracking-wide">Sector Retail</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Dirección de equipos, optimización logística y gestión de KPIs de negocio.</p>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Certifications Strip -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="tech-card p-4 flex items-center justify-between group hover:border-amber-200 dark:hover:border-amber-700 transition">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Linux Essentials (LPI)</span>
+                        <span class="text-[10px] bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800 px-2 py-0.5 font-mono rounded-sm">IN_PROGRESS</span>
+                    </div>
+                    <div class="tech-card p-4 flex items-center justify-between group hover:border-slate-300 dark:hover:border-slate-600 transition">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">AWS Cloud Practitioner</span>
+                        <span class="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 px-2 py-0.5 font-mono rounded-sm">PLANNED</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <!-- NEW SECTION: PROFESSIONAL DNA (Interests) -->
-        <div class="md:col-span-12 mt-8">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">ADN Profesional & Intereses</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Interest 1 -->
-                <div class="bg-white p-6 rounded-lg shadow border-t-4 border-amber-500 text-center">
-                    <div class="text-4xl mb-3">🏛️</div>
-                    <h4 class="font-bold text-gray-800">Historia & Contexto</h4>
-                    <p class="text-sm text-gray-600 mt-2">Análisis de sistemas complejos y sus evoluciones. Entender el "porqué" antes de abordar el "cómo".</p>
-                </div>
-                <!-- Interest 2 -->
-                <div class="bg-white p-6 rounded-lg shadow border-t-4 border-cyan-500 text-center">
-                    <div class="text-4xl mb-3">📊</div>
-                    <h4 class="font-bold text-gray-800">Economía Digital</h4>
-                    <p class="text-sm text-gray-600 mt-2">Bitcoin y Mercados. Aplicación de lógica financiera y eficiencia de recursos al código.</p>
-                </div>
-                <!-- Interest 3 -->
-                <div class="bg-white p-6 rounded-lg shadow border-t-4 border-indigo-600 text-center">
-                    <div class="text-4xl mb-3">🏃</div>
-                    <h4 class="font-bold text-gray-800">Disciplina Ironman</h4>
-                    <p class="text-sm text-gray-600 mt-2">Preparación Ironman 70.3. La constancia deportiva trasladada a la calidad del software.</p>
-                </div>
-            </div>
-        </div>
-
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-10 mt-12 border-t border-gray-800">
-        <div class="container mx-auto px-4 text-center">
-            <p class="mb-4 text-white font-semibold">Gabriel Trujillo Vallejo &copy; 2026</p>
-            <div class="flex justify-center space-x-6 text-sm">
-                <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" class="hover:text-indigo-400 transition">LinkedIn</a>
-                <a href="https://github.com/gtrujillovdev-cyber" class="hover:text-indigo-400 transition">GitHub</a>
-                <a href="mailto:gtrujillov.dev@gmail.com" class="hover:text-indigo-400 transition">Email</a>
-            </div>
-            <p class="text-xs text-gray-600 mt-8">Desarrollado con Tailwind CSS + Chart.js | Deployed on GitHub Pages</p>
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-12 py-8 transition-colors duration-300">
+        <div class="container mx-auto px-6 text-center text-slate-400 dark:text-slate-600 text-[10px] font-mono">
+            <p class="mb-2">GABRIEL TRUJILLO VALLEJO &copy; 2026. ALL RIGHTS RESERVED.</p>
+            <p>
+                <span class="text-slate-300 dark:text-slate-700">BUILD:</span> v2.0.4 
+                <span class="mx-2">|</span> 
+                <span class="text-slate-300 dark:text-slate-700">STACK:</span> TAILWIND + CHART.JS 
+                <span class="mx-2">|</span> 
+                <span class="text-slate-300 dark:text-slate-700">DEPLOY:</span> GITHUB PAGES
+            </p>
         </div>
     </footer>
 
-    <!-- JS Logic -->
+    <!-- JS LOGIC -->
     <script>
-        // LABEL WRAPPING HELPER
+        // --- GLOBAL CHART CONFIG ---
+        Chart.defaults.font.family = "'JetBrains Mono', monospace";
+        Chart.defaults.font.size = 10;
+        
+        // Define Theme Colors
+        const THEME = {
+            light: { text: '#64748B', grid: '#F1F5F9', radarBg: 'rgba(51, 65, 85, 0.15)', radarBorder: '#334155', doughnutColors: ['#1E293B', '#475569', '#94A3B8', '#CBD5E1'] },
+            dark: { text: '#94A3B8', grid: '#334155', radarBg: 'rgba(148, 163, 184, 0.15)', radarBorder: '#CBD5E1', doughnutColors: ['#F8FAFC', '#94A3B8', '#64748B', '#475569'] }
+        };
+
+        // --- DARK MODE LOGIC ---
+        const themeBtn = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        let charts = []; // Store chart instances
+
+        function toggleTheme() {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            
+            // Update UI
+            themeLabel.innerText = isDark ? "NIGHT" : "LIGHT";
+            themeIcon.innerText = isDark ? "🌑" : "☀️";
+            themeIcon.classList.toggle('rotate-icon');
+
+            // Update Charts
+            updateCharts(isDark);
+        }
+
+        function updateCharts(isDark) {
+            const t = isDark ? THEME.dark : THEME.light;
+            
+            charts.forEach(chart => {
+                // Update Global Defaults for new charts (optional) but we modify instance mainly
+                chart.options.scales.x ? chart.options.scales.x.grid.color = t.grid : null;
+                chart.options.scales.y ? chart.options.scales.y.grid.color = t.grid : null;
+                
+                if (chart.config.type === 'radar') {
+                    chart.options.scales.r.grid.color = t.grid;
+                    chart.options.scales.r.angleLines.color = t.grid;
+                    chart.options.scales.r.pointLabels.color = t.text;
+                    chart.data.datasets[0].borderColor = t.radarBorder;
+                    chart.data.datasets[0].pointBorderColor = t.radarBorder;
+                    chart.data.datasets[0].backgroundColor = t.radarBg;
+                }
+                
+                if (chart.config.type === 'doughnut') {
+                   chart.data.datasets[0].backgroundColor = t.doughnutColors;
+                   chart.data.datasets[0].borderColor = isDark ? '#1E293B' : '#ffffff';
+                }
+
+                if (chart.config.type === 'bar') {
+                   // Keep bar colors neutral but visible
+                   chart.data.datasets[0].backgroundColor = isDark ? '#94A3B8' : '#475569';
+                }
+
+                chart.update();
+            });
+        }
+
+        themeBtn.addEventListener('click', toggleTheme);
+
+
+        // --- CHART GENERATION ---
+        
+        // Helper: Wrap labels
         function wrapLabel(label) {
             const maxLen = 15;
             if (label.length <= maxLen) return label;
@@ -272,8 +433,10 @@
             return lines;
         }
 
-        // TOOLTIP HELPER
         const tooltipConfig = {
+            backgroundColor: '#0F172A',
+            titleFont: { family: "'Inter', sans-serif" },
+            bodyFont: { family: "'JetBrains Mono', monospace" },
             callbacks: {
                 title: function(items) {
                     const label = items[0].chart.data.labels[items[0].dataIndex];
@@ -282,90 +445,111 @@
             }
         };
 
-        Chart.defaults.font.family = "'Inter', sans-serif";
-        Chart.defaults.color = '#4B5563';
-
-        // 1. SKILLS RADAR (UPDATED)
-        new Chart(document.getElementById('skillsRadarChart'), {
+        // 1. SKILLS RADAR
+        const c1 = new Chart(document.getElementById('skillsRadar'), {
             type: 'radar',
             data: {
-                labels: ['iOS / SwiftUI', 'Python / IA', 'Cloud (AWS/GCP)', 'DevOps / Docker', 'SQL / Datos', 'Gestión / Liderazgo'].map(wrapLabel),
+                labels: ['iOS/Swift', 'Python/IA', 'Cloud Ops', 'Docker', 'SQL', 'Liderazgo'].map(wrapLabel),
                 datasets: [{
-                    label: 'Nivel Competencial',
+                    label: 'Level',
                     data: [90, 85, 65, 70, 75, 95],
-                    backgroundColor: 'rgba(79, 70, 229, 0.2)',
-                    borderColor: '#4F46E5',
-                    pointBackgroundColor: '#06B6D4',
-                    pointBorderColor: '#fff'
+                    backgroundColor: THEME.light.radarBg,
+                    borderColor: THEME.light.radarBorder,
+                    borderWidth: 2,
+                    pointBackgroundColor: '#F8FAFC',
+                    pointBorderColor: THEME.light.radarBorder,
+                    pointRadius: 3
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: { r: { ticks: { display: false }, grid: { color: '#E5E7EB' } } },
+                scales: {
+                    r: {
+                        angleLines: { color: THEME.light.grid },
+                        grid: { color: THEME.light.grid },
+                        pointLabels: { font: { size: 9, weight: '700' }, color: THEME.light.text },
+                        ticks: { display: false }
+                    }
+                },
                 plugins: { legend: { display: false }, tooltip: tooltipConfig }
             }
         });
+        charts.push(c1);
 
-        // 2. STACK DOUGHNUT (UPDATED)
-        new Chart(document.getElementById('techStackDoughnut'), {
+        // 2. STACK DOUGHNUT
+        const c2 = new Chart(document.getElementById('stackDoughnut'), {
             type: 'doughnut',
             data: {
-                labels: ['Móvil (Core)', 'Backend & IA', 'Infraestructura', 'Gestión & Estrategia'].map(wrapLabel),
+                labels: ['Mobile', 'Backend', 'Ops', 'Soft'],
                 datasets: [{
                     data: [40, 30, 15, 15],
-                    backgroundColor: ['#4F46E5', '#06B6D4', '#F59E0B', '#1F2937']
+                    backgroundColor: THEME.light.doughnutColors,
+                    borderWidth: 1,
+                    borderColor: '#ffffff',
+                    hoverOffset: 4
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '70%',
-                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } }, tooltip: tooltipConfig }
+                cutout: '75%',
+                plugins: { legend: { display: false }, tooltip: tooltipConfig }
             }
         });
+        charts.push(c2);
 
-        // 3. PROJECT 1 BAR (TFG)
-        new Chart(document.getElementById('project1Chart'), {
+        // 3. PROJECT 1 CHART
+        const c3 = new Chart(document.getElementById('chartProj1'), {
             type: 'bar',
             data: {
-                labels: ['UX/UI', 'Lógica Financiera', 'Seguridad Datos', 'SwiftData'].map(wrapLabel),
+                labels: ['UI/UX', 'Logic', 'Data', 'Sec'],
                 datasets: [{
-                    label: 'Complejidad',
+                    label: 'Index',
                     data: [90, 80, 85, 75],
-                    backgroundColor: '#4F46E5',
-                    borderRadius: 4
+                    backgroundColor: '#475569',
+                    barPercentage: 0.5,
+                    borderRadius: 2
                 }]
             },
             options: {
                 indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: { x: { display: false }, y: { grid: { display: false } } },
+                scales: { 
+                    x: { display: false }, 
+                    y: { grid: { display: false } } 
+                },
                 plugins: { legend: { display: false }, tooltip: tooltipConfig }
             }
         });
+        charts.push(c3);
 
-        // 4. PROJECT 2 BAR (BTC AGENT)
-        new Chart(document.getElementById('project2Chart'), {
+        // 4. PROJECT 2 CHART
+        const c4 = new Chart(document.getElementById('chartProj2'), {
             type: 'bar',
             data: {
-                labels: ['Integración LLM', 'Auto-Scaling', 'APIs Externas', 'Lógica Python'].map(wrapLabel),
+                labels: ['AI', 'Auto', 'API', 'Py'],
                 datasets: [{
-                    label: 'Complejidad',
+                    label: 'Index',
                     data: [95, 70, 90, 85],
-                    backgroundColor: '#1F2937',
-                    borderRadius: 4
+                    backgroundColor: '#475569',
+                    barPercentage: 0.5,
+                    borderRadius: 2
                 }]
             },
             options: {
                 indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: { x: { display: false }, y: { grid: { display: false } } },
+                scales: { 
+                    x: { display: false }, 
+                    y: { grid: { display: false } } 
+                },
                 plugins: { legend: { display: false }, tooltip: tooltipConfig }
             }
         });
+        charts.push(c4);
     </script>
 </body>
 </html>
