@@ -3,7 +3,7 @@ Gabriel Trujillo Vallejo - Interactive CV & Portfolio
 Este repositorio aloja mi Currículum Interactivo (SPA), diseñado para visualizar mis competencias técnicas y trayectoria profesional de forma dinámica.
 
 🔗 Ver CV Interactivo Online
-(https://gtrujillovdev-cyber.github.io/InteractiveCV/)
+https://gtrujillovdev-cyber.github.io/InteractiveCV/
 
 🛠 Stack Tecnológico
 
