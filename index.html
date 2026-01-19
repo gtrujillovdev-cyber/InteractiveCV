@@ -146,9 +146,9 @@
                     <span id="themeLabel" class="text-slate-200 font-bold uppercase text-[9px]">AUTO</span>
                 </button>
             </div>
-            <div class="hidden md:block tracking-widest uppercase">Gabriel Trujillo Vallejo // iOS Developer & Fintech
-                Engineering</div>
-            <div>BUILD_ID: 2.6.7</div>
+            <div class="hidden md:block tracking-widest uppercase text-xs font-bold">Gabriel Trujillo Vallejo // iOS
+                Developer & Fintech Engineering</div>
+            <div>BUILD_ID: 2.7.1</div>
         </div>
     </div>
 
@@ -187,14 +187,18 @@
                 <!-- FOTO REDONDEADA Y CONTACTO -->
                 <div class="tech-card p-6 bg-slate-100/50 dark:bg-slate-900/50 flex flex-col items-center">
                     <div
-                        class="w-40 h-40 rounded-full border-4 border-white dark:border-slate-800 overflow-hidden shadow-2xl mb-6 bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
-                        <img src="CVFOTO1.png" alt="Gabriel Trujillo" class="w-full h-full object-cover"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-xs font-mono text-slate-400 text-center p-2 uppercase">Image<br>Not
-                            Found</span>
+                        class="w-40 h-40 rounded-full border-4 border-white dark:border-slate-800 overflow-hidden shadow-2xl mb-6 bg-slate-200 dark:bg-slate-800 flex items-center justify-center relative">
+                        <!-- Referencia exacta al archivo CVFOTO1.png -->
+                        <img src="CVFOTO1.png" alt="Gabriel Trujillo" class="w-full h-full object-cover block"
+                            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                        <div class="hidden text-center p-2">
+                            <span
+                                class="text-[10px] font-mono text-slate-400 uppercase tracking-tighter leading-none">Resource<br>Not
+                                Loaded</span>
+                        </div>
                     </div>
                     <h3
-                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4 w-full border-b dark:border-slate-700 pb-2">
+                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4 w-full border-b dark:border-slate-700 pb-2 text-center md:text-left">
                         Contact_Identity</h3>
                     <div class="w-full space-y-2 text-[11px] font-mono text-slate-600 dark:text-slate-400">
                         <div class="flex items-center gap-2"><span>✉️</span> gtrujillov.dev@gmail.com</div>
@@ -308,7 +312,7 @@
                 <!-- Radar de Competencias -->
                 <div class="tech-card p-6 shadow-sm">
                     <h3
-                        class="text-xs font-bold font-mono mb-6 text-center tracking-widest uppercase border-b dark:border-slate-700 pb-2">
+                        class="text-xs font-bold font-mono mb-6 text-center tracking-widest uppercase border-b dark:border-slate-700 pb-2 text-indigo-600 dark:text-indigo-400">
                         Technical_Competence_Matrix</h3>
                     <div class="chart-container">
                         <canvas id="skillsRadar"></canvas>
@@ -373,10 +377,10 @@
     </main>
 
     <footer class="py-12 border-t dark:border-slate-800 text-center transition-colors">
-        <p class="text-[10px] font-mono text-slate-500 tracking-widest text-center px-4 leading-relaxed">
+        <p class="text-[10px] font-mono text-slate-500 tracking-widest text-center px-4 leading-relaxed uppercase">
             © 2026 GABRIEL TRUJILLO VALLEJO. BUILT_WITH: [TAILWIND, CHART.JS] <br>
             <a href="https://gtrujillovdev-cyber.github.io/InteractiveCV/"
-                class="text-indigo-500 hover:text-indigo-400 transition underline mt-2 block font-bold uppercase">Stable_Release_v2.6.7</a>
+                class="text-indigo-500 hover:text-indigo-400 transition underline mt-2 block font-bold">Stable_Release_v2.7.1</a>
         </p>
     </footer>
 
