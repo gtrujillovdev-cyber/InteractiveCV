@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
             darkMode: 'class',
         }
     </script>
-    
+
     <!-- Detección de Tema -->
     <script>
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -24,14 +25,19 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
+        body {
+            font-family: 'Inter', sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
 
         .chart-container {
             position: relative;
@@ -40,53 +46,104 @@
         }
 
         .timeline-line {
-            position: absolute; left: 0; top: 0; bottom: 0;
-            width: 1px; margin-left: 7px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            margin-left: 7px;
             transition: background-color 0.3s;
         }
-        html:not(.dark) .timeline-line { background-color: #CBD5E1; }
-        html.dark .timeline-line { background-color: #475569; }
-        
+
+        html:not(.dark) .timeline-line {
+            background-color: #CBD5E1;
+        }
+
+        html.dark .timeline-line {
+            background-color: #475569;
+        }
+
         .timeline-dot {
-            width: 9px; height: 9px;
-            border-width: 2px; border-style: solid;
-            position: absolute; left: 3px; top: 8px;
+            width: 9px;
+            height: 9px;
+            border-width: 2px;
+            border-style: solid;
+            position: absolute;
+            left: 3px;
+            top: 8px;
             z-index: 10;
         }
-        html:not(.dark) .timeline-dot { background-color: #334155; border-color: #F8FAFC; }
-        html.dark .timeline-dot { background-color: #94A3B8; border-color: #1E293B; }
+
+        html:not(.dark) .timeline-dot {
+            background-color: #334155;
+            border-color: #F8FAFC;
+        }
+
+        html.dark .timeline-dot {
+            background-color: #94A3B8;
+            border-color: #1E293B;
+        }
 
         .tech-card {
-            border-width: 1px; border-style: solid;
+            border-width: 1px;
+            border-style: solid;
             border-radius: 4px;
             transition: all 0.3s ease;
         }
-        html:not(.dark) .tech-card { background: #FFFFFF; border-color: #E2E8F0; }
-        html.dark .tech-card { background: #1E293B; border-color: #334155; }
-        
+
+        html:not(.dark) .tech-card {
+            background: #FFFFFF;
+            border-color: #E2E8F0;
+        }
+
+        html.dark .tech-card {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
         .tech-badge {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.65rem;
             padding: 2px 6px;
             border-radius: 3px;
-            border-width: 1px; border-style: solid;
+            border-width: 1px;
+            border-style: solid;
             display: inline-block;
         }
-        html:not(.dark) .tech-badge { background-color: #F1F5F9; border-color: #CBD5E1; color: #475569; }
-        html.dark .tech-badge { background-color: #0F172A; border-color: #334155; color: #94A3B8; }
+
+        html:not(.dark) .tech-badge {
+            background-color: #F1F5F9;
+            border-color: #CBD5E1;
+            color: #475569;
+        }
+
+        html.dark .tech-badge {
+            background-color: #0F172A;
+            border-color: #334155;
+            color: #94A3B8;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-slate-300 dark:selection:bg-slate-700 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
+<<<<<<< HEAD
     <!-- BARRA SUPERIOR DE ESTADO -->
     <div class="bg-slate-900 text-slate-400 text-[10px] md:text-xs font-mono py-1.5 border-b border-slate-800 dark:bg-black">
+=======
+<body
+    class="antialiased selection:bg-slate-300 dark:selection:bg-slate-700 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+
+    <!-- BARRA SUPERIOR DE ESTADO -->
+    <div
+        class="bg-slate-900 text-slate-400 text-[10px] md:text-xs font-mono py-1.5 border-b border-slate-800 dark:bg-black">
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
         <div class="container mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <div class="flex items-center gap-2">
                     <span>STATUS: OPERATIONAL</span>
                     <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
                 </div>
                 <button id="themeToggle" class="flex items-center gap-1 hover:text-white transition focus:outline-none">
@@ -95,7 +152,11 @@
                 </button>
             </div>
             <div class="hidden md:block tracking-widest uppercase">Gabriel Trujillo Vallejo // Fintech Engineering</div>
+<<<<<<< HEAD
             <div>BUILD_ID: 2.5.0</div>
+=======
+            <div>BUILD_ID: 2.6.0</div>
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
         </div>
     </div>
 
@@ -108,13 +169,18 @@
                         GABRIEL TRUJILLO VALLEJO
                     </h1>
                     <h2 class="text-sm md:text-lg text-slate-500 dark:text-slate-400 font-mono">
-                        <span class="text-indigo-600 dark:text-indigo-400 uppercase">iOS Developer</span> | Fintech & Cloud Ops
+                        <span class="text-indigo-600 dark:text-indigo-400 uppercase">iOS Developer</span> | Fintech &
+                        Cloud Ops
                     </h2>
                 </div>
-                
+
                 <div class="grid grid-cols-2 gap-3 w-full md:w-64">
-                    <a href="https://github.com/gtrujillovdev-cyber" target="_blank" class="flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 text-white text-[10px] font-mono rounded-sm hover:bg-slate-800 transition shadow-sm">GITHUB ↗</a>
-                    <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank" class="flex items-center justify-center gap-2 px-4 py-2 bg-blue-700 text-white text-[10px] font-mono rounded-sm hover:bg-blue-600 transition shadow-sm">LINKEDIN ↗</a>
+                    <a href="https://github.com/gtrujillovdev-cyber" target="_blank"
+                        class="flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 text-white text-[10px] font-mono rounded-sm hover:bg-slate-800 transition shadow-sm">GITHUB
+                        ↗</a>
+                    <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank"
+                        class="flex items-center justify-center gap-2 px-4 py-2 bg-blue-700 text-white text-[10px] font-mono rounded-sm hover:bg-blue-600 transition shadow-sm">LINKEDIN
+                        ↗</a>
                 </div>
             </div>
         </div>
@@ -125,29 +191,49 @@
 
             <!-- COLUMNA IZQUIERDA (SIDEBAR) -->
             <div class="lg:col-span-4 space-y-6">
-                
+
                 <!-- FOTO REDONDEADA Y CONTACTO -->
                 <div class="tech-card p-6 bg-slate-100/50 dark:bg-slate-900/50 flex flex-col items-center">
+<<<<<<< HEAD
                     <div class="w-40 h-40 rounded-full border-4 border-white dark:border-slate-800 overflow-hidden shadow-2xl mb-6">
                         <img src="IMG_0055.jpg" alt="Gabriel Trujillo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/160?text=GT'">
+=======
+                    <div
+                        class="w-40 h-40 rounded-full border-4 border-white dark:border-slate-800 overflow-hidden shadow-2xl mb-6">
+                        <img src="IMG_0055.jpg" alt="Gabriel Trujillo" class="w-full h-full object-cover"
+                            onerror="this.src='https://via.placeholder.com/160?text=GT'">
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                     </div>
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4 w-full border-b dark:border-slate-700 pb-2">Contact_Identity</h3>
+                    <h3
+                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4 w-full border-b dark:border-slate-700 pb-2">
+                        Contact_Identity</h3>
                     <div class="w-full space-y-2 text-[11px] font-mono text-slate-600 dark:text-slate-400">
                         <div class="flex items-center gap-2"><span>✉️</span> gtrujillov.dev@gmail.com</div>
                         <div class="flex items-center gap-2"><span>📍</span> Sevilla, ES | Permiso B</div>
+<<<<<<< HEAD
                         <div class="flex items-center gap-2"><span>🌐</span> <a href="https://gtrujillovdev-cyber.github.io/InteractiveCV/" class="text-indigo-500 hover:underline italic">Interactive_Deployment</a></div>
+=======
+                        <div class="flex items-center gap-2"><span>🌐</span> <a
+                                href="https://gtrujillovdev-cyber.github.io/InteractiveCV/"
+                                class="text-indigo-500 hover:underline italic">Interactive_Deployment</a></div>
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                     </div>
                 </div>
 
                 <!-- Perfil Profesional -->
                 <div class="tech-card p-5 border-l-4 border-indigo-500">
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4">Core_Profile</h3>
+                    <h3
+                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4">
+                        Core_Profile</h3>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Desarrollador junior (DAM) con perfil híbrido orientado a resultados. Especializado en iOS nativo y arquitectura backend robusta.
+                        Desarrollador junior (DAM) con perfil híbrido orientado a resultados. Especializado en iOS
+                        nativo y arquitectura backend robusta.
                         <br><br>
-                        Experto en la automatización de flujos técnicos y gestión de infraestructura cloud. 10 años de disciplina operativa aplicados a la ingeniería de software.
+                        Experto en la automatización de flujos técnicos y gestión de infraestructura cloud. 10 años de
+                        disciplina operativa aplicados al software.
                     </p>
                 </div>
+<<<<<<< HEAD
 
                 <!-- Tecnologías -->
                 <div class="tech-card p-5">
@@ -176,23 +262,71 @@
                     </div>
                 </div>
 
+=======
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
             </div>
 
             <!-- COLUMNA DERECHA (MAIN CONTENT) -->
             <div class="lg:col-span-8 space-y-6">
 
+                <!-- Tecnologías -->
+                <div class="tech-card p-6 shadow-sm border-t-4 border-blue-500">
+                    <h3
+                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-6 border-b dark:border-slate-700 pb-2">
+                        Technical_Inventory_Overview</h3>
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                        <div>
+                            <span
+                                class="text-[10px] font-bold text-indigo-500 font-mono tracking-tighter">iOS_NATIVE_CORE</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Swift 5+, SwiftUI, UIKit,
+                                SwiftData, CoreData, XCTest, MVVM-C, Clean Architecture.</p>
+                        </div>
+                        <div>
+                            <span
+                                class="text-[10px] font-bold text-blue-500 font-mono tracking-tighter">BACKEND_&_JAVA</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Java (Spring Boot),
+                                Hibernate/JPA, Maven, Python (Pandas/NumPy), SQL (MySQL).</p>
+                        </div>
+                        <div>
+                            <span
+                                class="text-[10px] font-bold text-amber-500 font-mono tracking-tighter">CLOUD_&_DEVOPS</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Google Cloud Platform (GCP),
+                                Docker, Bash/Python Scripting, GitHub Actions (CI/CD).</p>
+                        </div>
+                        <div>
+                            <span
+                                class="text-[10px] font-bold text-emerald-500 font-mono tracking-tighter">FINTECH_&_IA</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">TradingView (Pine Script), APIs
+                                Financieras, LM Studio (Local LLMs), OSINT.</p>
+                        </div>
+                        <div class="md:col-span-2">
+                            <span
+                                class="text-[10px] font-bold text-slate-500 font-mono tracking-tighter">ECOSYSTEM_&_TOOLS</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Slack, Fork, Google Workspace,
+                                LaTeX, Jira, Xcode, VS Code, Postman.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Proyectos -->
                 <div class="tech-card overflow-hidden shadow-sm">
-                    <div class="bg-slate-50 dark:bg-slate-900 px-6 py-3 border-b dark:border-slate-700 flex justify-between items-center font-mono text-[10px] text-slate-500 uppercase tracking-widest">
+                    <div
+                        class="bg-slate-50 dark:bg-slate-900 px-6 py-3 border-b dark:border-slate-700 flex justify-between items-center font-mono text-[10px] text-slate-500 uppercase tracking-widest">
                         <span>Project_Deployment_Logs</span>
                         <span class="text-emerald-500 font-bold tracking-tighter">Uptime: 100%</span>
                     </div>
-                    
+
                     <div class="p-6 grid md:grid-cols-2 gap-8">
                         <div class="group">
-                            <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-2">Suite Gestión Patrimonial</h4>
+                            <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-2">Suite Gestión
+                                Patrimonial</h4>
                             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+<<<<<<< HEAD
                                 Aplicación iOS nativa para el control de finanzas con enfoque local-first. Gestión de activos mediante arquitecturas desacopladas y persistencia segura.
+=======
+                                Aplicación iOS nativa para el control de finanzas con enfoque local-first. Gestión de
+                                activos mediante arquitecturas desacopladas y persistencia segura.
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                             </p>
                             <div class="flex flex-wrap gap-1 mb-4">
                                 <span class="tech-badge">SWIFTDATA</span>
@@ -204,9 +338,15 @@
                         </div>
 
                         <div class="group md:border-l dark:border-slate-800 md:pl-8">
-                            <h4 class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-2">BtcBriefing Agent</h4>
+                            <h4 class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-2">BtcBriefing Agent
+                            </h4>
                             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+<<<<<<< HEAD
                                 Monitorización 24/7 de mercados. Integra LM Studio para análisis de sentimiento y automatiza reportes ejecutivos mediante scripting avanzado.
+=======
+                                Monitorización 24/7 de mercados. Integra LM Studio para análisis de sentimiento y
+                                automatiza reportes ejecutivos mediante scripting avanzado.
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                             </p>
                             <div class="flex flex-wrap gap-1 mb-4">
                                 <span class="tech-badge">LLM_LOCAL</span>
@@ -219,9 +359,17 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- Radar de Competencias (Reubicado debajo de Proyectos) -->
                 <div class="tech-card p-6 shadow-sm">
                     <h3 class="text-xs font-bold font-mono mb-6 text-center tracking-widest uppercase border-b dark:border-slate-700 pb-2">Technical_Competence_Matrix</h3>
+=======
+                <!-- Radar de Competencias -->
+                <div class="tech-card p-6 shadow-sm">
+                    <h3
+                        class="text-xs font-bold font-mono mb-6 text-center tracking-widest uppercase border-b dark:border-slate-700 pb-2">
+                        Technical_Competence_Matrix</h3>
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                     <div class="chart-container">
                         <canvas id="skillsRadar"></canvas>
                     </div>
@@ -229,18 +377,27 @@
 
                 <!-- Historial -->
                 <div class="tech-card p-6 shadow-sm">
-                    <h3 class="text-xs font-bold font-mono mb-8 uppercase tracking-widest border-b dark:border-slate-700 pb-2">Experience_Chronology</h3>
-                    
+                    <h3
+                        class="text-xs font-bold font-mono mb-8 uppercase tracking-widest border-b dark:border-slate-700 pb-2">
+                        Experience_Chronology</h3>
+
                     <div class="relative space-y-12 pl-2">
                         <div class="relative pl-8">
                             <div class="timeline-line"></div>
                             <div class="timeline-dot"></div>
                             <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 mb-2">
                                 <h4 class="font-bold text-sm uppercase">Desarrollador de Aplicaciones (DAM)</h4>
-                                <span class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">2024 - ACTUALIDAD</span>
+                                <span
+                                    class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">2024
+                                    - ACTUALIDAD</span>
                             </div>
                             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
+<<<<<<< HEAD
                                 Formación avanzada en arquitectura de software, bases de datos y desarrollo nativo iOS. Especialización en patrones de diseño y metodologías ágiles.
+=======
+                                Formación avanzada en arquitectura de software, bases de datos y desarrollo nativo iOS.
+                                Especialización en patrones de diseño y metodologías ágiles.
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                             </p>
                         </div>
 
@@ -249,10 +406,17 @@
                             <div class="timeline-dot"></div>
                             <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 mb-2">
                                 <h4 class="font-bold text-sm uppercase">Resp. Técnico de Material (Legión)</h4>
-                                <span class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">2020 - 2025</span>
+                                <span
+                                    class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">2020
+                                    - 2025</span>
                             </div>
                             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
+<<<<<<< HEAD
                                 Gestión de activos tecnológicos críticos en entorno militar. Resolución técnica en situaciones de alta presión, monitorización de sistemas y logística avanzada.
+=======
+                                Gestión de activos tecnológicos críticos en entorno militar. Resolución técnica en
+                                situaciones de alta presión, monitorización de sistemas y logística avanzada.
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                             </p>
                         </div>
 
@@ -260,10 +424,17 @@
                             <div class="timeline-dot"></div>
                             <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 mb-2">
                                 <h4 class="font-bold text-sm uppercase">Gerente de Unidad de Negocio</h4>
-                                <span class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">2014 - 2019</span>
+                                <span
+                                    class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">2014
+                                    - 2019</span>
                             </div>
                             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
+<<<<<<< HEAD
                                 Dirección operativa del sector retail. Liderazgo de equipos multidisciplinares, optimización de stock mediante ERP y gestión de KPIs comerciales.
+=======
+                                Dirección operativa del sector retail. Liderazgo de equipos multidisciplinares,
+                                optimización de stock mediante ERP y gestión de KPIs comerciales.
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                             </p>
                         </div>
                     </div>
@@ -272,6 +443,7 @@
                 <!-- Status Panel -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="tech-card p-4 text-center">
+<<<<<<< HEAD
                         <span class="block text-[10px] font-mono text-slate-500 mb-1 tracking-widest uppercase">Communication</span>
                         <span class="text-sm font-bold uppercase">ES / EN (B2 Técnico)</span>
                     </div>
@@ -281,6 +453,20 @@
                     </div>
                     <div class="tech-card p-4 text-center">
                         <span class="block text-[10px] font-mono text-slate-500 mb-1 tracking-widest uppercase">Academic_Focus</span>
+=======
+                        <span
+                            class="block text-[10px] font-mono text-slate-500 mb-1 tracking-widest uppercase">Communication</span>
+                        <span class="text-sm font-bold uppercase">ES / EN (B2 Técnico)</span>
+                    </div>
+                    <div class="tech-card p-4 text-center">
+                        <span
+                            class="block text-[10px] font-mono text-slate-500 mb-1 tracking-widest uppercase">Availability</span>
+                        <span class="text-sm font-bold text-indigo-500 italic">PRACTICAS_FCT_2025</span>
+                    </div>
+                    <div class="tech-card p-4 text-center">
+                        <span
+                            class="block text-[10px] font-mono text-slate-500 mb-1 tracking-widest uppercase">Academic_Focus</span>
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
                         <span class="text-[11px] font-bold uppercase">Clean Architecture / iOS</span>
                     </div>
                 </div>
@@ -292,16 +478,21 @@
     <footer class="py-12 border-t dark:border-slate-800 text-center transition-colors">
         <p class="text-[10px] font-mono text-slate-500 tracking-widest text-center px-4 leading-relaxed">
             © 2026 GABRIEL TRUJILLO VALLEJO. BUILT_WITH: [TAILWIND, CHART.JS] <br>
+<<<<<<< HEAD
             <a href="https://gtrujillovdev-cyber.github.io/InteractiveCV/" class="text-indigo-500 hover:text-indigo-400 transition underline mt-2 block font-bold">STABLE_RELEASE_v2.5</a>
+=======
+            <a href="https://gtrujillovdev-cyber.github.io/InteractiveCV/"
+                class="text-indigo-500 hover:text-indigo-400 transition underline mt-2 block font-bold">STABLE_RELEASE_v2.6.0</a>
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
         </p>
     </footer>
 
     <!-- LÓGICA DE GRÁFICOS Y TEMA -->
     <script>
         const isDarkMode = () => document.documentElement.classList.contains('dark');
-        
-        const getColors = () => isDarkMode() ? 
-            { bg: 'rgba(129, 140, 248, 0.15)', border: '#818cf8', grid: '#334155', text: '#94a3b8' } : 
+
+        const getColors = () => isDarkMode() ?
+            { bg: 'rgba(129, 140, 248, 0.15)', border: '#818cf8', grid: '#334155', text: '#94a3b8' } :
             { bg: 'rgba(79, 70, 229, 0.1)', border: '#4f46e5', grid: '#e2e8f0', text: '#64748b' };
 
         let radarChart;
@@ -333,16 +524,16 @@
                         r: {
                             grid: { color: colors.grid },
                             angleLines: { color: colors.grid },
-                            pointLabels: { 
-                                color: colors.text, 
-                                font: { size: 10, family: "'JetBrains Mono', monospace", weight: 'bold' } 
+                            pointLabels: {
+                                color: colors.text,
+                                font: { size: 10, family: "'JetBrains Mono', monospace", weight: 'bold' }
                             },
                             ticks: { display: false },
                             suggestedMin: 0,
                             suggestedMax: 100
                         }
                     },
-                    plugins: { 
+                    plugins: {
                         legend: { display: false },
                         tooltip: {
                             backgroundColor: '#0F172A',
@@ -360,7 +551,7 @@
         const updateThemeUI = () => {
             const dark = isDarkMode();
             themeLabel.innerText = dark ? 'NIGHT' : 'LIGHT';
-            initRadar(); 
+            initRadar();
         };
 
         themeBtn.addEventListener('click', () => {
@@ -371,4 +562,9 @@
         window.addEventListener('DOMContentLoaded', updateThemeUI);
     </script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+
+</html>
+>>>>>>> 50571b1 (release: v2.6.0 estructura final con radar e inventario en columna principal)
