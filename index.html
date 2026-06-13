@@ -1,379 +1,244 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Trujillo Vallejo | SDET | QA Automation Engineer</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
-
-    <!-- Detección de Tema -->
-    <script>
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Gabriel Trujillo Vallejo | Portafolio Interactivo</title>
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+        /* Smooth transitions for profile switching */
+        .fade-transition {
+            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
         }
-
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
+        .fade-out {
+            opacity: 0;
+            transform: translateY(4px);
         }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 280px;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            margin-left: 7px;
-            transition: background-color 0.3s;
-        }
-
-        html:not(.dark) .timeline-line {
-            background-color: #CBD5E1;
-        }
-
-        html.dark .timeline-line {
-            background-color: #475569;
-        }
-
-        .timeline-dot {
-            width: 9px;
-            height: 9px;
-            border-width: 2px;
-            border-style: solid;
-            position: absolute;
-            left: 3px;
-            top: 8px;
-            z-index: 10;
-        }
-
-        html:not(.dark) .timeline-dot {
-            background-color: #334155;
-            border-color: #F8FAFC;
-        }
-
-        html.dark .timeline-dot {
-            background-color: #94A3B8;
-            border-color: #1E293B;
-        }
-
-        .tech-card {
-            border-width: 1px;
-            border-style: solid;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        html:not(.dark) .tech-card {
-            background: #FFFFFF;
-            border-color: #E2E8F0;
-        }
-
-        html.dark .tech-card {
-            background: #1E293B;
-            border-color: #334155;
-        }
-
-        .tech-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            border-radius: 3px;
-            border-width: 1px;
-            border-style: solid;
-            display: inline-block;
-        }
-
-        html:not(.dark) .tech-badge {
-            background-color: #F1F5F9;
-            border-color: #CBD5E1;
-            color: #475569;
-        }
-
-        html.dark .tech-badge {
-            background-color: #0F172A;
-            border-color: #334155;
-            color: #94A3B8;
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
-<body
-    class="antialiased selection:bg-slate-300 dark:selection:bg-slate-700 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen selection:bg-indigo-500/30">
 
     <!-- BARRA SUPERIOR DE ESTADO -->
-    <div
-        class="bg-slate-900 text-slate-400 text-[10px] md:text-xs font-mono py-1.5 border-b border-slate-800 dark:bg-black">
-        <div class="container mx-auto px-6 flex justify-between items-center">
+    <div class="bg-slate-900 text-slate-400 text-[10px] md:text-xs font-mono py-2 border-b border-slate-800 dark:bg-black/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 flex flex-wrap justify-between items-center gap-2">
             <div class="flex items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <span>STATUS: OPERATIONAL</span>
-                    <span class="relative flex h-2 w-2">
-                        <span
-                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="font-bold text-slate-300">STATUS: OPERATIVO</span>
                 </div>
-                <button id="themeToggle" class="flex items-center gap-1 hover:text-white transition focus:outline-none">
-                    <span>MODE:</span>
-                    <span id="themeLabel" class="text-slate-200 font-bold uppercase text-[9px]">AUTO</span>
+                <button id="themeToggle" class="flex items-center gap-1 hover:text-white transition cursor-pointer">
+                    <span>TEMA:</span>
+                    <span id="themeLabel" class="text-indigo-400 font-bold uppercase">DARK</span>
                 </button>
             </div>
-            <div class="hidden md:block tracking-widest uppercase text-xs font-bold">Gabriel Trujillo Vallejo // SDET & QA Automation Engineer</div>
-            <div>BUILD_ID: 3.0.0</div>
+            
+            <!-- SELECTOR DE PERFIL PREMIUM (SWITCHER) -->
+            <div class="bg-slate-800/80 dark:bg-slate-900/90 p-0.5 rounded-full border border-slate-700 flex">
+                <button id="btnProfileIOS" class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold font-mono transition-all duration-300 cursor-pointer bg-indigo-600 text-white shadow" data-profile="ios">
+                    DEVELOPER iOS
+                </button>
+                <button id="btnProfileSys" class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold font-mono transition-all duration-300 cursor-pointer text-slate-400 hover:text-white" data-profile="sys">
+                    INFRAESTRUCTURA & QA
+                </button>
+                <button id="btnProfileAI" class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold font-mono transition-all duration-300 cursor-pointer text-slate-400 hover:text-white" data-profile="ai">
+                    DESARROLLO IA
+                </button>
+            </div>
+            
+            <div class="hidden lg:block text-slate-500">BUILD_ID: 4.0.0 (VITE + TAILWIND v4)</div>
         </div>
     </div>
 
     <!-- HEADER PRINCIPAL -->
-    <header class="bg-white border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 transition-colors">
-        <div class="container mx-auto px-6 py-10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-                <div>
-                    <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
-                        GABRIEL TRUJILLO VALLEJO
-                    </h1>
-                    <h2 class="text-sm md:text-lg text-slate-500 dark:text-slate-400 font-mono">
-                        <span class="text-indigo-600 dark:text-indigo-400 uppercase">SDET | QA Automation Engineer</span> |
-                        iOS & Backend Specialist
-                    </h2>
+    <header class="relative overflow-hidden bg-white dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none"></div>
+        <div class="container mx-auto px-6 py-12 relative">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                    <!-- FOTO DE PERFIL CON ANILLO DE GRADIENTE -->
+                    <div class="relative w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-xl">
+                        <div class="w-full h-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden flex items-center justify-center">
+                            <img src="/CVFOTO1.png" alt="Gabriel Trujillo" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                            Gabriel Trujillo Vallejo
+                        </h1>
+                        <h2 id="profileTitle" class="fade-transition text-base md:text-xl text-indigo-600 dark:text-indigo-400 font-mono mt-2 font-semibold">
+                            iOS Developer Junior | Swift · SwiftUI · XCUITest
+                        </h2>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3 w-full md:w-64">
-                    <a href="https://github.com/gtrujillovdev-cyber" target="_blank"
-                        class="flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 text-white text-[10px] font-mono rounded-sm hover:bg-slate-800 transition shadow-sm">GITHUB
-                        ↗</a>
-                    <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank"
-                        class="flex items-center justify-center gap-2 px-4 py-2 bg-blue-700 text-white text-[10px] font-mono rounded-sm hover:bg-blue-600 transition shadow-sm">LINKEDIN
-                        ↗</a>
+                <div class="flex flex-col gap-3 w-full md:w-auto">
+                    <a id="downloadCV" href="/GTV_CV_iOS_ES2026.pdf" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-indigo-500/20 transition-all font-mono text-xs">
+                        Descargar CV PDF 📥
+                    </a>
+                    <div class="flex gap-2">
+                        <a href="https://github.com/gtrujillovdev-cyber" target="_blank" class="flex-1 text-center py-2 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-mono rounded-lg transition">
+                            GITHUB ↗
+                        </a>
+                        <a href="https://www.linkedin.com/in/Gabriel-Trujillo-Vallejo-Dev" target="_blank" class="flex-1 text-center py-2 px-4 bg-blue-700 hover:bg-blue-600 text-white text-xs font-mono rounded-lg transition">
+                            LINKEDIN ↗
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <main class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
             <!-- COLUMNA IZQUIERDA (SIDEBAR) -->
             <div class="lg:col-span-4 space-y-6">
 
-                <!-- FOTO REDONDEADA Y CONTACTO -->
-                <div class="tech-card p-6 bg-slate-100/50 dark:bg-slate-900/50 flex flex-col items-center">
-                    <div
-                        class="w-40 h-40 rounded-full border-4 border-white dark:border-slate-800 overflow-hidden shadow-2xl mb-6 bg-slate-200 dark:bg-slate-800 flex items-center justify-center relative">
-                        <!-- Referencia exacta al archivo CVFOTO1.png -->
-                        <img src="CVFOTO1.png" alt="Gabriel Trujillo" class="w-full h-full object-cover block"
-                            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                        <div class="hidden text-center p-2">
-                            <span
-                                class="text-[10px] font-mono text-slate-400 uppercase tracking-tighter leading-none">Resource<br>Not
-                                Loaded</span>
+                <!-- INFORMACIÓN DE CONTACTO -->
+                <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm">
+                    <h3 class="text-xs font-bold text-slate-400 tracking-wider uppercase font-mono mb-4">
+                        // Datos_De_Contacto
+                    </h3>
+                    <div class="space-y-3 text-xs md:text-sm font-mono text-slate-600 dark:text-slate-400">
+                        <div class="flex items-center gap-3">
+                            <span class="text-indigo-500">✉️</span>
+                            <a href="mailto:gtrujillovdev@gmail.com" class="hover:underline">gtrujillovdev@gmail.com</a>
                         </div>
-                    </div>
-                    <h3
-                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4 w-full border-b dark:border-slate-700 pb-2 text-center md:text-left">
-                        Contact_Identity</h3>
-                    <div class="w-full space-y-2 text-[11px] font-mono text-slate-600 dark:text-slate-400">
-                        <div class="flex items-center gap-2"><span>✉️</span> gtrujillovdev@gmail.com</div>
-                        <div class="flex items-center gap-2"><span>📍</span> Sevilla, España</div>
-                        <div class="flex items-center gap-2"><span>🌐</span> <a
-                                href="https://gtrujillovdev-cyber.github.io/InteractiveCV/"
-                                class="text-indigo-500 hover:underline italic">Interactive_Deployment</a></div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-indigo-500">📞</span>
+                            <a href="tel:+34661666806" class="hover:underline">+34 661 666 806</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-indigo-500">📍</span>
+                            <span>Sevilla, España</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Perfil Profesional -->
-                <div class="tech-card p-5 border-l-4 border-indigo-500">
-                    <h3
-                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4">
-                        Core_Profile</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
-                        Más que un ingeniero de QA, me considero un entusiasta de la eficiencia y la robustez técnica. Mi trayectoria, marcada por el liderazgo y la disciplina (Nº 1 de promoción), me ha permitido desarrollar una visión analítica crítica que ahora traslado al ecosistema iOS y Backend.
-                        <br><br>
-                        Mi objetivo es garantizar que cada producto no solo funcione, sino que alcance su máximo nivel de excelencia.
+                <!-- PERFIL PROFESIONAL DINÁMICO -->
+                <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-indigo-600"></div>
+                    <h3 class="text-xs font-bold text-slate-400 tracking-wider uppercase font-mono mb-4 pl-2">
+                        // Resumen_Profesional
+                    </h3>
+                    <p id="profileSummary" class="fade-transition text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify pl-2">
+                        Desarrollador iOS Junior con sólido dominio de Swift y SwiftUI. Especializado en aplicaciones móviles con arquitecturas limpias (MVVM), testing automatizado (XCUITest) y CI/CD con GitHub Actions. Combino disciplina operativa (Nº 1 militar) con visión de calidad de software para entregar apps robustas y escalables.
                     </p>
                 </div>
+
+                <!-- GRÁFICO DE COMPETENCIAS -->
+                <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm">
+                    <h3 class="text-xs font-bold text-slate-400 tracking-wider uppercase font-mono mb-6 text-center">
+                        // Matriz_Competencias
+                    </h3>
+                    <div class="h-64 relative">
+                        <canvas id="skillsRadar"></canvas>
+                    </div>
+                </div>
+
+                <!-- IDIOMAS Y COMPETENCIAS CLAVE -->
+                <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm space-y-6">
+                    <div>
+                        <h3 class="text-xs font-bold text-slate-400 tracking-wider uppercase font-mono mb-3">
+                            // Idiomas
+                        </h3>
+                        <div class="space-y-2 font-mono text-xs">
+                            <div class="flex justify-between">
+                                <span>Español:</span>
+                                <span class="font-bold text-indigo-500">Nativo</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Inglés:</span>
+                                <span class="font-bold text-indigo-500">B2 — Profesional</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xs font-bold text-slate-400 tracking-wider uppercase font-mono mb-3">
+                            // Competencias_Blandas
+                        </h3>
+                        <ul id="softSkills" class="fade-transition text-xs space-y-2 text-slate-600 dark:text-slate-400 font-mono">
+                            <li class="flex items-center gap-2">✓ Resolución de bugs bajo presión</li>
+                            <li class="flex items-center gap-2">✓ Código limpio y arquitecturas sólidas</li>
+                            <li class="flex items-center gap-2">✓ Autodidacta y orientado a resultados</li>
+                            <li class="flex items-center gap-2">✓ Colaboración en equipo ágil (Scrum)</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <!-- COLUMNA DERECHA (MAIN CONTENT) -->
             <div class="lg:col-span-8 space-y-6">
 
-                <!-- Tecnologías -->
-                <div class="tech-card p-6 shadow-sm border-t-4 border-blue-500">
-                    <h3
-                        class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-6 border-b dark:border-slate-700 pb-2 text-blue-600 dark:text-blue-400">
-                        Technical_Stack_Inventory</h3>
-                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
-                        <div>
-                            <span
-                                class="text-[10px] font-bold text-indigo-500 font-mono tracking-tighter uppercase">Mobile_Automation</span>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Swift, SwiftUI, <b>XCUITest</b>, <b>XCTest</b>, <b>Snapshot Testing</b>, Clean Architecture.</p>
-                        </div>
-                        <div>
-                            <span
-                                class="text-[10px] font-bold text-blue-500 font-mono tracking-tighter uppercase">Backend_&_QA</span>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Java (<b>Spring Boot</b>), Python, <b>JUnit</b>, <b>Mockito</b>, <b>REST Assured</b>, SQL, <b>API Testing</b>.</p>
-                        </div>
-                        <div>
-                            <span
-                                class="text-[10px] font-bold text-amber-500 font-mono tracking-tighter uppercase">Cloud_&_Infrastructure</span>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1"><b>Docker</b>, <b>GCP</b>, <b>GitHub Actions</b>, <b>Jenkins</b>, Bash/Python Scripting, Git.</p>
-                        </div>
-                        <div>
-                            <span
-                                class="text-[10px] font-bold text-emerald-500 font-mono tracking-tighter uppercase">Methodologies_&_QA</span>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1"><b>Agile/Scrum</b>, <b>TDD/BDD</b>, <b>Jira</b>, <b>ISO 25010</b>, Software Quality Assurance.</p>
+                <!-- TECHNICAL STACK INVENTORY -->
+                <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm relative">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-blue-500/10 to-transparent pointer-events-none rounded-tr-xl"></div>
+                    <h3 class="text-xs font-bold text-blue-600 dark:text-blue-400 tracking-wider uppercase font-mono mb-6 border-b border-slate-100 dark:border-slate-800 pb-2">
+                        // Stack_Tecnico_Inventario
+                    </h3>
+                    <div id="techStackGrid" class="fade-transition grid md:grid-cols-2 gap-x-8 gap-y-6">
+                        <!-- Generado dinámicamente por JS -->
+                    </div>
+                </div>
+
+                <!-- PROYECTOS DESTACADOS -->
+                <div class="bg-white dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 dark:bg-slate-900/80 px-6 py-3 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center font-mono text-[10px] text-slate-500 uppercase">
+                        <span>// Logs_Despliegue_Proyectos</span>
+                        <span class="text-emerald-500 font-bold">Uptime: 100%</span>
+                    </div>
+
+                    <div id="projectsContainer" class="fade-transition p-6 grid md:grid-cols-2 gap-8">
+                        <!-- Generado dinámicamente por JS -->
+                    </div>
+                </div>
+
+                <!-- HISTORIAL LABORAL / CRONOLOGÍA -->
+                <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm">
+                    <h3 class="text-xs font-bold text-slate-400 tracking-wider uppercase font-mono mb-8 border-b border-slate-100 dark:border-slate-800 pb-2">
+                        // Cronologia_De_Experiencia
+                    </h3>
+
+                    <div class="relative border-l border-slate-200 dark:border-slate-800 ml-2 space-y-12">
+                        <!-- Los elementos se renderizan dinámicamente -->
+                        <div id="timelineContainer" class="fade-transition space-y-12">
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyectos -->
-                <div class="tech-card overflow-hidden shadow-sm">
-                    <div
-                        class="bg-slate-50 dark:bg-slate-900 px-6 py-3 border-b dark:border-slate-700 flex justify-between items-center font-mono text-[10px] text-slate-500 uppercase tracking-widest">
-                        <span>Project_Deployment_Logs</span>
-                        <span class="text-emerald-500 font-bold tracking-tighter">Uptime: 100%</span>
-                    </div>
-
-                    <div class="p-6 grid md:grid-cols-2 gap-8">
-                        <div class="group">
-                            <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-2">FinWealth — Gestión Patrimonial (QA Focused)</h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                                App robusta con <b>+80% de cobertura de tests</b>. Aplicación profunda de <b>XCUITest</b> y <b>XCTest</b> para validación de lógica financiera y seguridad de datos.
-                            </p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                <span class="tech-badge">XCUITEST</span>
-                                <span class="tech-badge">SNAPSHOT_TESTING</span>
-                            </div>
-                            <div class="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                                <div class="w-[85%] h-full bg-indigo-500"></div>
-                            </div>
-                        </div>
-
-                        <div class="group md:border-l dark:border-slate-800 md:pl-8">
-                            <h4 class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-2">BtcBriefing Agent (CI/CD Automation)</h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                                Pipeline de <b>Integración Continua</b> automatizado para el despliegue de agentes de monitorización en contenedores <b>Docker</b> mediante GitHub Actions.
-                            </p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                <span class="tech-badge">CI/CD</span>
-                                <span class="tech-badge">DOCKER</span>
-                            </div>
-                            <div class="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                                <div class="w-[92%] h-full bg-emerald-500"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Educación y Certificaciones -->
+                <!-- EDUCACIÓN Y CERTIFICACIONES -->
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div class="tech-card p-5 border-l-4 border-amber-500">
-                        <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4">Education_Path</h3>
-                        <div class="space-y-3">
-                            <div>
-                                <h4 class="text-[11px] font-bold text-slate-800 dark:text-slate-200 uppercase">Téc. Superior DAM</h4>
-                                <p class="text-[10px] text-slate-500 dark:text-slate-400">CESUR Sevilla | 2024 - 2026</p>
-                                <p class="text-[10px] text-slate-600 dark:text-slate-500 mt-1 italic">Arquitectura, BBDD y Calidad.</p>
-                            </div>
+                    <!-- Educación -->
+                    <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm relative">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-amber-500 rounded-l-xl"></div>
+                        <h3 class="text-xs font-bold text-amber-500 tracking-wider uppercase font-mono mb-4">
+                            // Educacion
+                        </h3>
+                        <div id="educationContainer" class="fade-transition space-y-4">
+                            <!-- Generado dinámicamente por JS -->
                         </div>
                     </div>
-                    <div class="tech-card p-5 border-l-4 border-emerald-500">
-                        <h3 class="text-xs font-bold text-slate-900 dark:text-white tracking-widest uppercase font-mono mb-4">Certifications</h3>
-                        <ul class="text-[10px] space-y-2 text-slate-600 dark:text-slate-400 font-mono">
-                            <li class="flex items-center gap-2 text-emerald-500">🏆 iOS/Swift Bootcamp</li>
-                            <li class="flex items-center gap-2">🎗️ AWS Cloud Practitioner</li>
-                            <li class="flex items-center gap-2">🇬🇧 B2 First Certificate</li>
+
+                    <!-- Certificaciones -->
+                    <div class="bg-white dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm relative">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500 rounded-l-xl"></div>
+                        <h3 class="text-xs font-bold text-emerald-500 tracking-wider uppercase font-mono mb-4">
+                            // Certificaciones
+                        </h3>
+                        <ul id="certificationsList" class="fade-transition text-xs space-y-3 font-mono">
+                            <!-- Generado dinámicamente por JS -->
                         </ul>
-                    </div>
-                </div>
-
-                <!-- Radar de Competencias -->
-                <div class="tech-card p-6 shadow-sm">
-                    <h3
-                        class="text-xs font-bold font-mono mb-6 text-center tracking-widest uppercase border-b dark:border-slate-700 pb-2 text-indigo-600 dark:text-indigo-400">
-                        Technical_Competence_Matrix</h3>
-                    <div class="chart-container">
-                        <canvas id="skillsRadar"></canvas>
-                    </div>
-                </div>
-
-                <!-- Historial -->
-                <div class="tech-card p-6 shadow-sm">
-                    <h3
-                        class="text-xs font-bold font-mono mb-8 uppercase tracking-widest border-b dark:border-slate-700 pb-2">
-                        Experience_Chronology</h3>
-
-                    <div class="relative space-y-12 pl-2">
-                        <div class="relative pl-8">
-                            <div class="timeline-line"></div>
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 mb-2">
-                                <h4 class="font-bold text-sm uppercase">Formación SW & QA Automation</h4>
-                                <span
-                                    class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded uppercase">2025
-                                    - Actualidad</span>
-                            </div>
-                            <div class="text-[10px] font-bold text-indigo-500 mb-2">DATACONTROL TI</div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
-                                Validación de APIs (<b>Postman</b>), automatización de tareas con <b>Python</b> e implementación de flujos de calidad de software.
-                            </p>
-                        </div>
-
-                        <div class="relative pl-8">
-                            <div class="timeline-line"></div>
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 mb-2">
-                                <h4 class="font-bold text-sm uppercase">Responsable Técnico de Activos</h4>
-                                <span
-                                    class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded uppercase">2020
-                                    - 2025</span>
-                            </div>
-                            <div class="text-[10px] font-bold text-indigo-500 mb-2">MINISTERIO DE DEFENSA</div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify mb-2">
-                                <b>Nº 1 de promoción militar.</b> Gestión del ciclo de vida de +200 activos tecnológicos. Protocolos de <b>trazabilidad</b> y QA en misiones críticas.
-                            </p>
-                        </div>
-
-                        <div class="relative pl-8">
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 mb-2">
-                                <h4 class="font-bold text-sm uppercase">Gerente de Unidad de Negocio</h4>
-                                <span
-                                    class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded uppercase">2014
-                                    - 2019</span>
-                            </div>
-                            <div class="text-[10px] font-bold text-indigo-500 mb-2">MERCAVAT 2014 SL</div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
-                                Optimización de procesos mediante gestión de <b>KPIs</b> y análisis de resultados operativos.
-                            </p>
-                        </div>
                     </div>
                 </div>
 
@@ -381,88 +246,15 @@
         </div>
     </main>
 
-    <footer class="py-12 border-t dark:border-slate-800 text-center transition-colors">
-        <p class="text-[10px] font-mono text-slate-500 tracking-widest text-center px-4 leading-relaxed uppercase">
-            © 2026 GABRIEL TRUJILLO VALLEJO. BUILT_WITH: [TAILWIND, CHART.JS] <br>
-            <a href="https://gtrujillovdev-cyber.github.io/InteractiveCV/"
-                class="text-indigo-500 hover:text-indigo-400 transition underline mt-2 block font-bold">Stable_Release_v2.7.1</a>
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-900 text-center transition-colors">
+        <p class="text-[10px] font-mono text-slate-500 tracking-widest px-4 leading-relaxed uppercase">
+            © 2026 GABRIEL TRUJILLO VALLEJO. CONSTRUIDO CON: [VITE, TAILWIND v4, CHART.JS] <br>
+            <span class="text-indigo-500 block font-bold mt-2">// CODIGO_LIMPIO_Y_EFICIENTE</span>
         </p>
     </footer>
 
-    <!-- LÓGICA DE GRÁFICOS Y TEMA -->
-    <script>
-        const isDarkMode = () => document.documentElement.classList.contains('dark');
-
-        const getColors = () => isDarkMode() ?
-            { bg: 'rgba(129, 140, 248, 0.15)', border: '#818cf8', grid: '#334155', text: '#94a3b8' } :
-            { bg: 'rgba(79, 70, 229, 0.1)', border: '#4f46e5', grid: '#e2e8f0', text: '#64748b' };
-
-        let radarChart;
-
-        function initRadar() {
-            const colors = getColors();
-            const ctx = document.getElementById('skillsRadar');
-            if (radarChart) radarChart.destroy();
-
-            radarChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['iOS/Swift', 'Backend/Java', 'DevOps/Cloud', 'QA/Automation', 'TDD/BDD', 'Liderazgo'],
-                    datasets: [{
-                        label: 'TECHNICAL_LEVEL',
-                        data: [92, 80, 85, 90, 88, 95],
-                        backgroundColor: colors.bg,
-                        borderColor: colors.border,
-                        borderWidth: 2,
-                        pointRadius: 4,
-                        pointBackgroundColor: colors.border,
-                        pointBorderColor: isDarkMode() ? '#1E293B' : '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            grid: { color: colors.grid },
-                            angleLines: { color: colors.grid },
-                            pointLabels: {
-                                color: colors.text,
-                                font: { size: 10, family: "'JetBrains Mono', monospace", weight: 'bold' }
-                            },
-                            ticks: { display: false },
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#0F172A',
-                            titleFont: { size: 12 },
-                            bodyFont: { size: 12 }
-                        }
-                    }
-                }
-            });
-        }
-
-        const themeBtn = document.getElementById('themeToggle');
-        const themeLabel = document.getElementById('themeLabel');
-
-        const updateThemeUI = () => {
-            const dark = isDarkMode();
-            themeLabel.innerText = dark ? 'NIGHT' : 'LIGHT';
-            initRadar();
-        };
-
-        themeBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            updateThemeUI();
-        });
-
-        window.addEventListener('DOMContentLoaded', updateThemeUI);
-    </script>
+    <!-- Script principal de la aplicación -->
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
