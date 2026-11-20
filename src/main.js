@@ -3,239 +3,242 @@ import './style.css';
 
 Chart.register(...registerables);
 
-// --- DATOS DE LOS PERFILES ---
-const profiles = {
-    ios: {
-        title: "iOS Developer Junior | Swift · SwiftUI · XCUITest",
-        summary: "Desarrollador iOS Junior con sólido dominio de Swift y SwiftUI. Especializado en aplicaciones móviles con arquitecturas limpias (MVVM), testing automatizado (XCUITest) y CI/CD con GitHub Actions. Combino disciplina operativa (Nº 1 militar) con visión de calidad de software para entregar apps robustas y escalables.",
-        softSkills: [
-            "✓ Resolución de bugs bajo presión",
-            "✓ Código limpio y arquitecturas sólidas",
-            "✓ Autodidacta y orientado a resultados",
-            "✓ Colaboración en equipo ágil (Scrum)"
-        ],
-        techStack: [
-            {
-                title: "Swift / SwiftUI",
-                desc: "Swift 5+, SwiftUI, UIKit, Combine, SwiftData, MVVM/MVC."
-            },
-            {
-                title: "Testing iOS",
-                desc: "XCUITest, XCTest, SnapshotTesting, TDD/BDD, Instruments."
-            },
-            {
-                title: "CI/CD Mobile",
-                desc: "GitHub Actions, Fastlane, TestFlight, App Store Connect."
-            },
-            {
-                title: "Desarrollo",
-                desc: "Swift, Python, Bash, C/C++, SQL, Java."
-            }
-        ],
-        projects: [
-            {
-                title: "FinWealth — Gestión Patrimonial iOS (QA Focused)",
-                desc: "App de finanzas personales con <b>+80% cobertura de tests automatizados</b>. Arquitectura MVVM, persistencia con SwiftData y pipeline CI/CD completo vía GitHub Actions.",
-                badges: ["SWIFT", "SWIFTUI", "XCUITEST", "SWIFTDATA"],
-                percentage: 85
-            },
-            {
-                title: "BtcBriefing Agent — Automatización con Python & Docker",
-                desc: "Agente autónomo con pipeline de CI/CD para despliegue en entornos Linux. Demuestra dominio de automatización, scripting y DevOps aplicado al ciclo de desarrollo.",
-                badges: ["PYTHON", "DOCKER", "CI/CD", "LINUX"],
-                percentage: 90
-            }
-        ],
-        experience: [
-            {
-                title: "Formación en Desarrollo iOS & QA Automation",
-                company: "DATACONTROL TECNOLOGÍAS DE LA INFORMACIÓN",
-                period: "2025 – Actualidad",
-                desc: "Desarrollo de aplicaciones iOS con Swift y SwiftUI, arquitectura MVVM y gestión de datos con SwiftData. Implementación de suites de tests automatizados con XCUITest y XCTest (cobertura +80%). Pipeline CI/CD con GitHub Actions para distribución automática vía TestFlight."
-            },
-            {
-                title: "Responsable Técnico de Infraestructuras y Activos",
-                company: "MINISTERIO DE DEFENSA — TERCIO 4º, LA LEGIÓN",
-                period: "2020 – 2025",
-                desc: "<b>Nº 1 del escalafón militar en formación.</b> Liderazgo y ejecución operativa en entornos de alta presión. Gestión de infraestructura tecnológica (+200 activos), redes y soporte técnico hardware/software. Resolución de incidencias críticas garantizando disponibilidad 24/7 de los sistemas."
-            }
-        ],
-        education: [
-            {
-                title: "Téc. Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
-                institution: "CESUR — Sevilla",
-                period: "2024 – 2026",
-                desc: "Programación orientada a objetos, arquitecturas de software, BBDD relacionales y desarrollo multiplataforma."
-            }
-        ],
-        certifications: [
-            "🏆 iOS/Swift & QA Bootcamp",
-            "🎗️ AWS Cloud Practitioner (Roadmap 2026)",
-            "🇬🇧 B2 First Certificate — British Council"
-        ],
-        radar: {
-            labels: ['iOS/Swift', 'SwiftUI/UIKit', 'XCUITest/Testing', 'CI/CD Mobile', 'Clean Arch', 'Liderazgo'],
-            data: [95, 90, 85, 80, 88, 92]
-        },
-        pdf: "/GTV_CV_iOS_ES2026.pdf"
+// --- DATOS DE LOS PERFILES (100% alineados con repositorios reales y CV 2027) ---
+const realExperience = [
+    {
+        title: "Programador Full Stack | Prácticas de empresa",
+        company: "DataControl Tecnologías de la Información",
+        period: "Marzo – Junio 2026",
+        desc: "Prácticas curriculares de Desarrollo de Aplicaciones Multiplataforma (DAM), participando en desarrollo Full Stack, automatización y mantenimiento de software."
     },
-    sys: {
-        title: "Systems & Software Quality Engineer | Especialista en Infraestructura",
-        summary: "Especialista en Sistemas Linux, QA Automation e Infraestructuras Críticas. Galardonado como Nº 1 de promoción militar, aporto una disciplina absoluta y capacidad analítica para gestionar entornos de misión crítica. Mi enfoque une la robustez de la administración de sistemas con la excelencia del aseguramiento de calidad del software (SDET), experto en automatización (Bash/Python) y desarrollo de soluciones escalables.",
-        softSkills: [
-            "✓ Resolución de problemas bajo presión",
-            "✓ Disciplina operativa y rigor técnico",
-            "✓ Gestión integral de infraestructuras",
-            "✓ Mentoría y liderazgo de equipos"
-        ],
+    {
+        title: "Soldado | Funciones de responsable técnico",
+        company: "Tercio Alejandro Farnesio 4º de La Legión, Ejército de Tierra",
+        period: "2020 – 2025",
+        desc: "Desempeño de funciones de responsable técnico, gestión integral de infraestructuras, mentoría y liderazgo de equipos. Disciplina operativa y resolución de problemas bajo presión."
+    },
+    {
+        title: "Gerente y dependiente",
+        company: "MERCAVAT 2014 SL",
+        period: "2014 – 2019",
+        desc: "Funciones de gerencia operativa, coordinación y atención directa al público."
+    }
+];
+
+const realEducation = [
+    {
+        title: "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
+        institution: "CESUR — Sevilla",
+        period: "2024 – Junio 2026",
+        desc: "Formación en desarrollo de aplicaciones multiplataforma, bases de datos y calidad de software. Proyecto fin de ciclo para iOS: FinWealth."
+    },
+    {
+        title: "Bachillerato",
+        institution: "Colegio Sagrado Corazón (Esclavas) — Sevilla",
+        period: "Completado",
+        desc: "Formación preuniversitaria completa."
+    }
+];
+
+const realCertifications = [
+    "🇬🇧 B2 First Certificate — British Council (Acreditado)",
+    "⚙️ GitHub Actions CI/CD & Docker Workflows en Producción",
+    "📱 Desarrollo Nativo iOS (Swift · SwiftUI · SwiftData · XCTest)"
+];
+
+const realSoftSkills = [
+    "✓ Resolución de problemas bajo presión",
+    "✓ Disciplina operativa y rigor técnico",
+    "✓ Gestión integral de infraestructuras",
+    "✓ Mentoría y liderazgo de equipos"
+];
+
+const profiles = {
+    ai: {
+        title: "Desarrollador Python & Automatización IA | FastAPI · Playwright · Gemini",
+        summary: "Técnico Superior en DAM enfocado en backend Python, automatización de flujos con Playwright e integración de APIs de LLMs (Gemini). Diseño pipelines robustos con persistencia atómica, bots de control en Telegram y suites de pruebas en Pytest.",
+        softSkills: realSoftSkills,
         techStack: [
             {
-                title: "Linux Specialist",
-                desc: "Admin avanzada, configuración en producción, monitoreo y soporte Help Desk."
+                title: "Backend & APIs Python",
+                desc: "Python, FastAPI, Flask, Uvicorn, Pydantic, WebSockets, SQLite, Redis."
             },
             {
-                title: "Redes & Virtualización",
-                desc: "Gestión de redes, VMware, Docker, servidor Apache, OCS Inventory."
+                title: "IA & Automatización",
+                desc: "Google Gemini API (google-genai), Playwright, python-telegram-bot, BeautifulSoup4, curl_cffi."
             },
             {
-                title: "Software Quality (QA)",
-                desc: "XCUITest, XCTest, API Testing (Postman), TDD/BDD, Jira."
+                title: "Multimedia & Datos",
+                desc: "FFmpeg, Pandas, NumPy, PyArrow, Pillow, pypdf."
             },
             {
-                title: "CI/CD & Desarrollo",
-                desc: "GitHub Actions, Jenkins, Python, Bash, C/C++, Java, SQL."
+                title: "Testing & CI/CD",
+                desc: "Pytest, GitHub Actions, Docker, Git."
             }
         ],
         projects: [
             {
-                title: "BtcBriefing Agent — IA e Infraestructura",
-                desc: "Pipeline de <b>CI/CD</b> para el despliegue automático de agentes en entornos Linux. Demuestra capacidades de administración de sistemas y scripting automatizado.",
-                badges: ["PYTHON", "DOCKER", "LINUX", "AUTOMATION"],
+                title: "JobSeeker — Motor ATS & Automatización",
+                url: "https://github.com/gtrujillovdev-cyber/JobSeeker",
+                desc: "Análisis ATS de ofertas IT y automatización de flujos de candidatura con <b>Python, Playwright, Gemini y Telegram</b> con revisión humana.",
+                badges: ["PYTHON", "PLAYWRIGHT", "GEMINI", "PYTEST"],
                 percentage: 95
             },
             {
-                title: "FinWealth — Gestión Patrimonial (QA Focused)",
-                desc: "App robusta con <b>+80% de cobertura de tests</b>. Enfoque profundo en calidad técnica, seguridad de infraestructura y automatización de pruebas.",
-                badges: ["iOS", "SWIFT", "XCUITEST", "CALIDAD"],
-                percentage: 85
-            }
-        ],
-        experience: [
-            {
-                title: "Formación en Desarrollo de Software & QA Automation",
-                company: "DATACONTROL TECNOLOGÍAS DE LA INFORMACIÓN",
-                period: "2025 – Actualidad",
-                desc: "Automatización integral de pruebas y procesos mediante Python scripts. Validación técnica de infraestructuras críticas y aseguramiento de calidad IT. Implementación de protocolos de CI/CD para mejora de la estabilidad del software."
-            },
-            {
-                title: "Responsable Técnico de Infraestructuras y Activos",
-                company: "MINISTERIO DE DEFENSA — TERCIO 4º, LA LEGIÓN",
-                period: "2020 – 2025",
-                desc: "<b>Nº 1 del escalafón militar en formación.</b> Liderazgo y ejecución operativa. Gestión integral de la infraestructura tecnológica (+200 activos) y redes. Implementación de protocolos de mantenimiento preventivo y QA militar. Resolución de incidencias críticas hardware/software bajo condiciones extremas."
-            },
-            {
-                title: "Gerente de Unidad de Negocio",
-                company: "MERCAVAT 2014 SL",
-                period: "2014 – 2019",
-                desc: "Gestión operativa de procesos y análisis de KPIs para optimización de recursos y maximización de la eficiencia."
-            }
-        ],
-        education: [
-            {
-                title: "Téc. Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
-                institution: "CESUR — Sevilla",
-                period: "2024 – 2026",
-                desc: "Especializado en arquitectura de sistemas, administración y gestión de redes, bases de datos relacionales y calidad del software."
-            }
-        ],
-        certifications: [
-            "🎗️ AWS Cloud Practitioner (Roadmap 2026)",
-            "🏆 VMware & Docker Virtualization Course",
-            "🇬🇧 B2 First Certificate — British Council"
-        ],
-        radar: {
-            labels: ['Sistemas Linux', 'Virtualización', 'QA Automation', 'CI/CD Pipelines', 'Desarrollo/Scripting', 'Rigor Técnico'],
-            data: [95, 88, 90, 85, 92, 95]
-        },
-        pdf: "/GTV_CV_Sys_ES2026.pdf"
-    },
-    ai: {
-        title: "AI Engineer & Agentic Developer | LLMs · RAG · Python",
-        summary: "Especialista en Ingeniería de Inteligencia Artificial y Desarrollo Agéntico. Con experiencia en la integración de modelos de lenguaje (LLMs), diseño de pipelines RAG avanzados y orquestación de agentes autónomos. Mi enfoque combina la rigurosidad del desarrollo de software (QA/SDET) con la innovación en IA aplicada para construir soluciones automatizadas y cognitivas de alto rendimiento.",
-        softSkills: [
-            "✓ Resolución de problemas bajo presión",
-            "✓ Arquitectura de agentes cognitivos",
-            "✓ Autodidacta y orientado a resultados",
-            "✓ Colaboración en equipo ágil (Scrum)"
-        ],
-        techStack: [
-            {
-                title: "Inteligencia Artificial",
-                desc: "LLMs (OpenAI, Gemini, Claude), CoreML, NaturalLanguage."
-            },
-            {
-                title: "Agentes y RAG",
-                desc: "LangChain, CrewAI, RAG, Chunking Semántico, Vector DBs (Chroma, Pinecone)."
-            },
-            {
-                title: "Desarrollo IA",
-                desc: "Python, FastAPI, Hugging Face, PyTorch."
-            },
-            {
-                title: "DevOps & QA para IA",
-                desc: "Docker, Google Cloud Run, LangSmith (monitoreo), pytest."
-            }
-        ],
-        projects: [
-            {
-                title: "RehApp — IA Local & Adaptive Plan",
-                desc: "Integración de procesamiento de informes médicos mediante <b>NLP local (NaturalLanguage)</b> y <b>CoreML</b> para generación adaptativa de planes de recuperación física.",
-                badges: ["COREML", "NATURAL_LANGUAGE", "SWIFTDATA", "IOS"],
+                title: "GTAVIHub — Pipeline Multimedia 24/7",
+                url: "https://github.com/gtrujillovdev-cyber/GTAVIHub",
+                desc: "Pipeline automatizado de ingesta, TTS, renderizado por hardware con <b>FFmpeg</b>, Gemini y distribución controlada por Telegram.",
+                badges: ["PYTHON", "FFMPEG", "GEMINI", "TELEGRAM"],
                 percentage: 92
             },
             {
-                title: "BtcBriefing Agent — IA e Infraestructura",
-                desc: "Agente autónomo integrado con APIs de predicción y pipelines CI/CD automatizados para el despliegue rápido de servicios financieros.",
-                badges: ["PYTHON", "DOCKER", "CI/CD", "AGENTIC"],
-                percentage: 95
-            }
-        ],
-        experience: [
-            {
-                title: "Formación en Desarrollo de Software, QA & IA",
-                company: "DATACONTROL TECNOLOGÍAS DE LA INFORMACIÓN",
-                period: "2025 – Actualidad",
-                desc: "Desarrollo y optimización de flujos basados en agentes autónomos e integración de modelos predictivos locales y en la nube. Automatización de pruebas unitarias y funcionales."
+                title: "GaBookAutoDownloader — Failover Multi-Mirror",
+                url: "https://github.com/gtrujillovdev-cyber/GaBookAutoDownloader",
+                desc: "Servicio modular en Python con interfaz Telegram, rotación de mirrors (failover), caché <b>Redis</b> y persistencia JSON atómica.",
+                badges: ["PYTHON", "DOCKER", "REDIS", "TELEGRAM"],
+                percentage: 90
             },
             {
-                title: "Responsable Técnico de Infraestructuras y Activos",
-                company: "MINISTERIO DE DEFENSA — TERCIO 4º, LA LEGIÓN",
-                period: "2020 – 2025",
-                desc: "<b>Nº 1 del escalafón militar en formación.</b> Liderazgo operativo. Gestión y mantenimiento de activos de TI, asegurando el despliegue de sistemas seguros bajo condiciones críticas."
+                title: "BtcBriefing — Automatización & APIs",
+                url: "https://github.com/gtrujillovdev-cyber/BtcBriefing_iOS_ShortCut",
+                desc: "Servicio en <b>FastAPI, Pandas y Matplotlib</b> desplegado con Docker y GitHub Actions para briefings integrados con Atajos de iOS.",
+                badges: ["FASTAPI", "PANDAS", "DOCKER", "CI/CD"],
+                percentage: 88
             }
         ],
-        education: [
-            {
-                title: "Téc. Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
-                institution: "CESUR — Sevilla",
-                period: "2024 – 2026",
-                desc: "Especializado en arquitectura de sistemas, bases de datos y algoritmos de optimización."
-            }
-        ],
-        certifications: [
-            "🎗️ AWS Cloud Practitioner (Roadmap 2026)",
-            "🏆 Deep Learning & Generative AI Bootcamp",
-            "🇬🇧 B2 First Certificate — British Council"
-        ],
+        experience: realExperience,
+        education: realEducation,
+        certifications: realCertifications,
         radar: {
-            labels: ['LLMs/RAG', 'Agentic Workflows', 'Python/FastAPI', 'CoreML/Local IA', 'QA & Evals', 'Liderazgo'],
-            data: [90, 92, 95, 85, 88, 92]
+            labels: ['Python/FastAPI', 'Playwright', 'Gemini APIs', 'Docker/CI', 'Pytest/QA', 'Sistemas'],
+            data: [95, 92, 90, 86, 88, 90]
         },
-        pdf: "/GTV_CV_IA_ES2026.pdf"
+        pdf: "/GTVCV_2027_ATS.pdf"
+    },
+    sys: {
+        title: "Sistemas Linux, Redes & DevOps Junior | Docker · FastAPI · Bash",
+        summary: "Especialista en sistemas Unix/Linux, redes locales y automatización de servicios en contenedores Docker. Combino disciplina operativa (5 años en el Ejército de Tierra como responsable técnico) con observabilidad, scripting en Python/Bash y pipelines CI/CD.",
+        softSkills: realSoftSkills,
+        techStack: [
+            {
+                title: "Sistemas & Redes",
+                desc: "Linux CLI, redes TCP/IP, Zeroconf, ADB, WebSockets, soporte Help Desk."
+            },
+            {
+                title: "Contenedores & CI/CD",
+                desc: "Docker, Docker Compose, GitHub Actions, despliegue automatizado."
+            },
+            {
+                title: "Telemetría & Scripting",
+                desc: "Python, Bash, psutil, FastAPI, manejo de señales POSIX (SIGTERM/SIGINT)."
+            },
+            {
+                title: "Calidad & Control",
+                desc: "Pytest, logs estructurados JSONL, Git."
+            }
+        ],
+        projects: [
+            {
+                title: "DevOps (system-monitor-cli) — Telemetría POSIX",
+                url: "https://github.com/gtrujillovdev-cyber/DevOps",
+                desc: "Monitor de sistemas Unix/Linux con <b>FastAPI y Docker Compose</b>, recolección con psutil, logs JSONL y parada limpia vía SIGTERM/SIGINT.",
+                badges: ["LINUX", "DOCKER", "FASTAPI", "PSUTIL"],
+                percentage: 94
+            },
+            {
+                title: "Tv-streamer — Streaming Local & Google Cast",
+                url: "https://github.com/gtrujillovdev-cyber/tv-streamer",
+                desc: "Servidor multimedia local en Python con autodescubrimiento <b>Zeroconf / Google Cast</b> en red LAN y contenedor Docker.",
+                badges: ["PYTHON", "DOCKER", "NETWORKING", "ZEROCONF"],
+                percentage: 90
+            },
+            {
+                title: "mando-tv — Control Multi-TV en LAN",
+                url: "https://github.com/gtrujillovdev-cyber/mando-tv",
+                desc: "Integración de televisores webOS y Android TV mediante API REST, <b>WebSocket y ADB</b> en Raspberry Pi con control desde Siri y Atajos.",
+                badges: ["WEBSOCKET", "ADB", "RASPBERRY PI", "PYTHON"],
+                percentage: 90
+            },
+            {
+                title: "InteractiveCV — Web & CI/CD",
+                url: "https://github.com/gtrujillovdev-cyber/InteractiveCV",
+                desc: "Portafolio técnico construido con <b>Vite, Tailwind CSS v4 y Chart.js</b> con build y despliegue automático en GitHub Actions.",
+                badges: ["VITE", "TAILWIND", "CHART.JS", "GITHUB ACTIONS"],
+                percentage: 88
+            }
+        ],
+        experience: realExperience,
+        education: realEducation,
+        certifications: realCertifications,
+        radar: {
+            labels: ['Linux CLI', 'Docker/Compose', 'Redes/Sockets', 'FastAPI/Python', 'CI/CD', 'Rigor Técnico'],
+            data: [94, 90, 90, 92, 86, 95]
+        },
+        pdf: "/GTVCV_2027_ATS.pdf"
+    },
+    ios: {
+        title: "Desarrollador Multiplataforma DAM & QA | Swift · SwiftUI · XCTest",
+        summary: "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) con foco en desarrollo nativo Apple (Swift, SwiftUI, SwiftData), automatización de pruebas (XCTest, XCUITest, Pytest, Playwright) y frontend moderno con Vite y Tailwind CSS.",
+        softSkills: realSoftSkills,
+        techStack: [
+            {
+                title: "Ecosistema Apple (iOS/macOS)",
+                desc: "Swift, SwiftUI, SwiftData, integración con Siri y Atajos (Shortcuts)."
+            },
+            {
+                title: "Testing & QA",
+                desc: "XCTest, XCUITest, Pytest, Playwright."
+            },
+            {
+                title: "Multiplataforma & Web",
+                desc: "Java, JavaScript, Vite, Tailwind CSS, Chart.js, SQL."
+            },
+            {
+                title: "Automatización & Git",
+                desc: "Python, FastAPI, GitHub Actions (CI/CD), Git."
+            }
+        ],
+        projects: [
+            {
+                title: "FinWealth — Gestión Patrimonial iOS",
+                desc: "Aplicación iOS de gestión patrimonial desarrollada con <b>Swift y SwiftData</b>, respaldada con pruebas unitarias y UI en <b>XCTest y XCUITest</b>.",
+                badges: ["SWIFT", "SWIFTDATA", "XCTEST", "XCUITEST"],
+                percentage: 90
+            },
+            {
+                title: "mando-tv — Control iOS/Siri para Smart TVs",
+                url: "https://github.com/gtrujillovdev-cyber/mando-tv",
+                desc: "Servidor Python con PWA móvil y accesos directos nativos desde <b>Siri y Atajos de iOS</b> vía WebSocket y ADB.",
+                badges: ["SIRI", "ATAJOS iOS", "WEBSOCKET", "PYTHON"],
+                percentage: 90
+            },
+            {
+                title: "InteractiveCV — Frontend Vite + Tailwind v4",
+                url: "https://github.com/gtrujillovdev-cyber/InteractiveCV",
+                desc: "CV web interactivo con filtrado dinámico de perfiles técnicos, gráficos con Chart.js y pipeline CI en <b>GitHub Actions</b>.",
+                badges: ["VITE", "TAILWIND", "JAVASCRIPT", "CI/CD"],
+                percentage: 88
+            },
+            {
+                title: "JobSeeker — QA & Playwright Automation",
+                url: "https://github.com/gtrujillovdev-cyber/JobSeeker",
+                desc: "Plataforma de automatización en navegador con <b>Playwright</b>, análisis ATS y batería de tests unitarios en <b>Pytest</b>.",
+                badges: ["PLAYWRIGHT", "PYTEST", "PYTHON", "ATS"],
+                percentage: 94
+            }
+        ],
+        experience: realExperience,
+        education: realEducation,
+        certifications: realCertifications,
+        radar: {
+            labels: ['Swift/SwiftUI', 'XCTest/XCUITest', 'Playwright/Pytest', 'Web (Vite/JS)', 'Java/SQL', 'CI/CD'],
+            data: [88, 86, 92, 86, 85, 88]
+        },
+        pdf: "/GTVCV_2027_ATS.pdf"
     }
 };
 
-let currentProfile = "ios";
+let currentProfile = "ai";
 let radarChart = null;
 
 // --- ELEMENTOS DEL DOM ---
@@ -374,7 +377,10 @@ function applyProfileContent() {
             .map(project => `
                 <div class="group flex flex-col justify-between">
                     <div>
-                        <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-2">${project.title}</h4>
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                            <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400">${project.title}</h4>
+                            ${project.url ? `<a href="${project.url}" target="_blank" class="shrink-0 text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-600 hover:text-white transition">Repo ↗</a>` : ""}
+                        </div>
                         <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                             ${project.desc}
                         </p>
