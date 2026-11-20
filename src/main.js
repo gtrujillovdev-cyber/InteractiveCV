@@ -111,7 +111,7 @@ const profiles = {
         certifications: realCertifications,
         radar: {
             labels: ['Python/FastAPI', 'Playwright', 'Gemini APIs', 'Docker/CI', 'Pytest/QA', 'Sistemas'],
-            data: [95, 92, 90, 86, 88, 90]
+            data: [88, 82, 74, 70, 78, 65]
         },
         pdf: "./GTVCV_2027_ATS.pdf"
     },
@@ -172,7 +172,7 @@ const profiles = {
         certifications: realCertifications,
         radar: {
             labels: ['Linux CLI', 'Docker/Compose', 'Redes/Sockets', 'FastAPI/Python', 'CI/CD', 'Rigor Técnico'],
-            data: [94, 90, 90, 92, 86, 95]
+            data: [85, 80, 68, 76, 72, 92]
         },
         pdf: "./GTVCV_2027_ATS.pdf"
     },
@@ -232,7 +232,7 @@ const profiles = {
         certifications: realCertifications,
         radar: {
             labels: ['Swift/SwiftUI', 'XCTest/XCUITest', 'Playwright/Pytest', 'Web (Vite/JS)', 'Java/SQL', 'CI/CD'],
-            data: [88, 86, 92, 86, 85, 88]
+            data: [80, 76, 84, 70, 65, 72]
         },
         pdf: "./GTVCV_2027_ATS.pdf"
     }
