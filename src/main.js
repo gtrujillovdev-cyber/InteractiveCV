@@ -56,7 +56,7 @@ const realSoftSkills = [
 const profiles = {
     ai: {
         title: "Desarrollador Python & Automatización IA | FastAPI · Playwright · Gemini",
-        summary: "Construyo herramientas que automatizan lo tedioso y hacen útil lo complejo. Con Python, Playwright y la API de Gemini he montado en producción un motor ATS, un pipeline de publicación en LinkedIn y un bot de Telegram con aprobación humana. Me importa que el código funcione de verdad, no solo en local.",
+        summary: "Técnico Superior en DAM especializado en desarrollo backend con Python, automatización de procesos con Playwright y integración de modelos de lenguaje mediante la API de Gemini. He diseñado y desplegado en producción pipelines de publicación, motores de análisis ATS y sistemas de control con aprobación humana vía Telegram, con énfasis en robustez, persistencia atómica y cobertura de pruebas con Pytest.",
         softSkills: realSoftSkills,
         techStack: [
             {
@@ -117,7 +117,7 @@ const profiles = {
     },
     sys: {
         title: "Sistemas Linux, Redes & DevOps Junior | Docker · FastAPI · Bash",
-        summary: "Cinco años como responsable técnico en el Ejército me enseñaron que los sistemas fallan cuando más se necesitan — y que la disciplina operativa no es opcional. Hoy aplico esa mentalidad a Linux, Docker y FastAPI: servicios que arrancan solos, se monitorizan con psutil y se paran limpio con SIGTERM.",
+        summary: "Técnico Superior en DAM con sólida base en administración de sistemas Unix/Linux, contenedores Docker y automatización de servicios con Python y Bash. Cinco años como responsable técnico en el Ejército de Tierra han forjado una disciplina operativa que aplico en la gestión de infraestructuras, observabilidad con FastAPI y psutil, y pipelines CI/CD con GitHub Actions.",
         softSkills: realSoftSkills,
         techStack: [
             {
@@ -178,7 +178,7 @@ const profiles = {
     },
     ios: {
         title: "Desarrollador Multiplataforma DAM & QA | Swift · SwiftUI · XCTest",
-        summary: "DAM me dio la base multiplataforma; los proyectos reales me dieron el criterio. He desarrollado apps iOS nativas con Swift y SwiftData, escrito suites de pruebas en XCTest y XCUITest, y automatizado navegadores con Playwright y Pytest. Sé lo que separa un test que pasa de un test que vale.",
+        summary: "Técnico Superior en DAM con formación en desarrollo multiplataforma y orientación hacia la calidad del software. He desarrollado aplicaciones iOS nativas con Swift, SwiftUI y SwiftData, implementado pruebas unitarias y de interfaz con XCTest y XCUITest, y automatizado flujos con Playwright y Pytest. Combino visión de producto con rigor técnico en testing y CI/CD con GitHub Actions.",
         softSkills: realSoftSkills,
         techStack: [
             {
