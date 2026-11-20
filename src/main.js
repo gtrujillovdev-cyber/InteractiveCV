@@ -113,7 +113,7 @@ const profiles = {
             labels: ['Python/FastAPI', 'Playwright', 'Gemini APIs', 'Docker/CI', 'Pytest/QA', 'Sistemas'],
             data: [95, 92, 90, 86, 88, 90]
         },
-        pdf: "/GTVCV_2027_ATS.pdf"
+        pdf: "./GTVCV_2027_ATS.pdf"
     },
     sys: {
         title: "Sistemas Linux, Redes & DevOps Junior | Docker · FastAPI · Bash",
@@ -174,7 +174,7 @@ const profiles = {
             labels: ['Linux CLI', 'Docker/Compose', 'Redes/Sockets', 'FastAPI/Python', 'CI/CD', 'Rigor Técnico'],
             data: [94, 90, 90, 92, 86, 95]
         },
-        pdf: "/GTVCV_2027_ATS.pdf"
+        pdf: "./GTVCV_2027_ATS.pdf"
     },
     ios: {
         title: "Desarrollador Multiplataforma DAM & QA | Swift · SwiftUI · XCTest",
@@ -234,7 +234,7 @@ const profiles = {
             labels: ['Swift/SwiftUI', 'XCTest/XCUITest', 'Playwright/Pytest', 'Web (Vite/JS)', 'Java/SQL', 'CI/CD'],
             data: [88, 86, 92, 86, 85, 88]
         },
-        pdf: "/GTVCV_2027_ATS.pdf"
+        pdf: "./GTVCV_2027_ATS.pdf"
     }
 };
 
